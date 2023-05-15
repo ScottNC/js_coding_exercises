@@ -67,8 +67,6 @@ export function simpleFizzBuzz(n) {
 	if (!(n%5))
 		res += 'buzz';
 
-	if (!res)
-		return n;
-
-	return res;
+	// if the number is not divisible by 3 or 5 res should be empty so function will return n
+	return res || n;
 }
