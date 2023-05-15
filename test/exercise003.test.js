@@ -87,6 +87,15 @@ describe("getTotalSubjects", () => {
     ];
     expect(getTotalSubjects(people)).toBe(1);
   });
+
+  test("returns 1 if 1 person has a student has no subjects item", () => {
+    const people = [
+      { name: "Billy", subjects: [] },
+      { name: "Claude", subjects: ["chemistry", undefined] },
+      { name: "Aneeta" },
+    ];
+    expect(getTotalSubjects(people)).toBe(1);
+  });
 });
 
 describe("checkIngredients", () => {
