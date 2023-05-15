@@ -6,7 +6,10 @@
 
 export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');
-	// Add your code here!
+
+	// Finds first letter and converts to upper case and adds letter to rest of word
+	let initial = word.charAt(0).toUpperCase();
+	return initial + word.slice(1);
 }
 
 export function generateInitials(firstName, lastName) {
