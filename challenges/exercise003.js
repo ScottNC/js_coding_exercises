@@ -2,6 +2,19 @@ import {
 	capitalize,
 } from './exercise001.js';
 
+function concatItems (obj, key, filterFunc) {
+	let items = [];
+
+	// adds all items to array
+	obj.forEach(item => {
+		items = items.concat(item[key]);
+	})
+	console.log(items);
+
+	// removes item values based on filter (i.e. only accepts string values)
+	return items.filter(filterFunc);
+}
+
 export function getSquares(nums) {
 	if (nums === undefined) throw new Error('nums is required');
 
@@ -28,22 +41,18 @@ export function camelCaseWords(words) {
 export function getTotalSubjects(people) {
 	if (people === undefined) throw new Error('people is required');
 	
-	let subjects = [];
-
-	// adds all subjects to array
-	people.forEach(person => {
-		subjects = subjects.concat(person.subjects);
-	})
-
-	// removes non string subject values
-	subjects = subjects.filter(subject => typeof(subject) == 'string');
+	let subjects = concatItems(people, 'subjects', item => typeof(item) == 'string')
 	return subjects.length;
 }
 
 export function checkIngredients(menu, ingredient) {
 	if (menu === undefined) throw new Error('menu is required');
 	if (!ingredient) throw new Error('ingredient is required');
-	// Your code here!
+
+	// Creates array of all times ingredient is used
+	let relevantIngredients = concatItems(menu, 'ingredients', item => item == ingredient);
+	// returns true if ingredient is used at all
+	return !!relevantIngredients.length;
 }
 
 export function duplicateNumbers(arr1, arr2) {
