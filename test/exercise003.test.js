@@ -38,6 +38,14 @@ describe("getSquares", () => {
       2916, 576, 25, 4356, 984064,
     ]);
   });
+
+  test("returns an array of squares for large numbers", () => {
+    expect(getSquares([672, 1000])).toEqual([451584, 1000000]);
+  });
+
+  test("returns an array of squares for large numbers", () => {
+    expect(getSquares([2, 'orange', 5])).toEqual([4, 'orange', 25]);
+  });
 });
 
 describe("getTotalSubjects", () => {
