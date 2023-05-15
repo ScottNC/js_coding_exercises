@@ -5,6 +5,9 @@ export function getFillings(sandwich) {
 
 export function isFromManchester(person) {
 	if (person === undefined) throw new Error('person is required');
+
+	if (typeof(person.city) != 'string') return false;
+	
 	return person.city.toLowerCase() == 'manchester';
 }
 
