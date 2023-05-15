@@ -56,5 +56,19 @@ export function getMeanScore(scores) {
 
 export function simpleFizzBuzz(n) {
 	if (n === undefined) throw new Error('n is required');
-	// Add your code here!
+	
+	// we have an empty string for res so we can add fizz or buzz to it
+	let res = '';
+
+	// runs two checks to see if the number is divisible by 3 or 5 by checking the remainder is 0
+	if (!(n%3))
+		res += 'fizz';
+	
+	if (!(n%5))
+		res += 'buzz';
+
+	if (!res)
+		return n;
+
+	return res;
 }
