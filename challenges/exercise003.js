@@ -1,6 +1,12 @@
 export function getSquares(nums) {
 	if (nums === undefined) throw new Error('nums is required');
-	// Your code here!
+
+	// if number, item is replaced by square of number
+	nums.forEach((num, index, arr) =>
+		arr[index] = typeof(num) == 'number' ? num**2 : num
+	);
+
+	return nums
 }
 
 export function camelCaseWords(words) {
