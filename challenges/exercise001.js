@@ -50,7 +50,13 @@ export function getSalePrice(originalPrice, reduction) {
 
 export function getMiddleCharacter(str) {
 	if (str === undefined) throw new Error('str is required');
-	// Add your code here!
+		
+	let len = str.length;
+
+	if (len % 2) // if odd
+		return str[(len - 1)/2];
+	else // if even
+		return str[len/2 - 1] + str[len/2];
 }
 
 export function reverseWord(word) {
@@ -90,10 +96,10 @@ export function simpleFizzBuzz(n) {
 	let res = '';
 
 	// runs two checks to see if the number is divisible by 3 or 5 by checking the remainder is 0
-	if (!(n%3))
+	if (!(n % 3))
 		res += 'fizz';
 	
-	if (!(n%5))
+	if (!(n % 5))
 		res += 'buzz';
 
 	// if the number is not divisible by 3 or 5 res should be empty so function will return n
