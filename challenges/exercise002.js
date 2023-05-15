@@ -1,3 +1,7 @@
+import {
+	nthInitialCapital,
+} from './exercise001.js';
+
 export function getFillings(sandwich) {
 	if (sandwich === undefined) throw new Error('ingredients is required');
 	return sandwich.fillings;
@@ -28,5 +32,16 @@ export function countSheep(arr) {
 
 export function hasMPostCode(person) {
 	if (person === undefined) throw new Error('person is required');
-	// Your code here!
+
+	if (person.address && typeof(person.address.postCode) == 'string') {
+	
+		// determines if first letter of postcode is M
+		if (nthInitialCapital(person.address.postCode) != 'M')
+			return false;
+
+		// find if second letter of postcode is a number
+		return !!parseInt(nthInitialCapital(person.address.postCode, 2))
+	}
+
+	return false;
 }

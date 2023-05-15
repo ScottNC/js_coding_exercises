@@ -5,10 +5,10 @@
 // Note: Be sure to read the corresponding .md file for each exercise, in the docs folder. 📘 👍
 
 
-function firstInitialCapital(word) {
+export function nthInitialCapital(word, n = 1) {
 	// returns first letter and capitalises it
 	// 'hello' => 'H' 
-	return word.charAt(0).toUpperCase();
+	return word.charAt(n - 1).toUpperCase();
 }
 
 function decimalPlace(num, dec = 2) {
@@ -21,7 +21,7 @@ export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');
 
 	// Finds first letter and converts to upper case and adds letter to rest of word
-	let initial = firstInitialCapital(word);
+	let initial = nthInitialCapital(word);
 	return initial + word.slice(1);
 }
 
@@ -29,9 +29,9 @@ export function generateInitials(firstName, lastName) {
 	if (firstName === undefined) throw new Error('firstName is required');
 	if (lastName === undefined) throw new Error('lastName is required');
 
-	return firstInitialCapital(firstName) + 
+	return nthInitialCapital(firstName) + 
 		((firstName && lastName) && '.') +  // Will only add a point if both names are present
-		firstInitialCapital(lastName);
+		nthInitialCapital(lastName);
 }
 
 export function addVAT(originalPrice, vatRate) {
