@@ -138,6 +138,11 @@ describe('countSheep', () => {
 		];
 		expect(countSheep(arr)).toBe(5);
 	});
+
+	test('returns 2 if there are 2 sheep in the array with non string values', () => {
+		const arr = ['dog', 'sheep', 4, 'sheep', 7];
+		expect(countSheep(arr)).toBe(2);
+	});
 });
 
 describe('hasMPostCode', () => {
