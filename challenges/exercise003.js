@@ -30,10 +30,13 @@ export function getTotalSubjects(people) {
 	
 	let subjects = [];
 
+	// adds all subjects to array
 	people.forEach(person => {
 		subjects = subjects.concat(person.subjects);
 	})
 
+	// removes non string subject values
+	subjects = subjects.filter(subject => typeof(subject) == 'string');
 	return subjects.length;
 }
 

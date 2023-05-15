@@ -78,6 +78,15 @@ describe("getTotalSubjects", () => {
     ];
     expect(getTotalSubjects(people)).toBe(9);
   });
+
+  test("returns 1 if 1 person has a subject with null and undefined subjects", () => {
+    const people = [
+      { name: "Billy", subjects: [] },
+      { name: "Claude", subjects: ["chemistry", undefined] },
+      { name: "Aneeta", subjects: [null, 4] },
+    ];
+    expect(getTotalSubjects(people)).toBe(1);
+  });
 });
 
 describe("checkIngredients", () => {
