@@ -29,7 +29,9 @@ export function generateInitials(firstName, lastName) {
 	if (firstName === undefined) throw new Error('firstName is required');
 	if (lastName === undefined) throw new Error('lastName is required');
 
-	return firstInitialCapital(firstName) + '.' + firstInitialCapital(lastName);
+	return firstInitialCapital(firstName) + 
+		((firstName && lastName) && '.') +  // Will only add a point if both names are present
+		firstInitialCapital(lastName);
 }
 
 export function addVAT(originalPrice, vatRate) {
