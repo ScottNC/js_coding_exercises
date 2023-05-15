@@ -11,6 +11,12 @@ function firstInitialCapital(word) {
 	return word.charAt(0).toUpperCase();
 }
 
+function decimalPlace(num, dec = 2) {
+	// changes decimal places on a number
+	// 3.141592 => 3.14
+	return parseFloat(num.toFixed(dec));
+}
+
 export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');
 
@@ -30,7 +36,8 @@ export function addVAT(originalPrice, vatRate) {
 	if (originalPrice === undefined)
 		throw new Error('originalPrice is requied');
 	if (vatRate === undefined) throw new Error('vatRate is required');
-	// Add your code here!
+	
+	return decimalPlace(originalPrice + originalPrice*vatRate/100);
 }
 
 export function getSalePrice(originalPrice, reduction) {
@@ -72,7 +79,7 @@ export function getMeanScore(scores) {
 	}) 
 
 	// returns the mean of the score to two decimal points
-	return parseFloat((sum/frequency).toFixed(2));
+	return decimalPlace(sum/frequency);
 }
 
 export function simpleFizzBuzz(n) {
