@@ -4,18 +4,26 @@
 
 // Note: Be sure to read the corresponding .md file for each exercise, in the docs folder. 📘 👍
 
+
+function firstInitialCapital(word) {
+	// returns first letter and capitalises it
+	// 'hello' => 'H' 
+	return word.charAt(0).toUpperCase();
+}
+
 export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');
 
 	// Finds first letter and converts to upper case and adds letter to rest of word
-	let initial = word.charAt(0).toUpperCase();
+	let initial = firstInitialCapital(word);
 	return initial + word.slice(1);
 }
 
 export function generateInitials(firstName, lastName) {
 	if (firstName === undefined) throw new Error('firstName is required');
 	if (lastName === undefined) throw new Error('lastName is required');
-	// Add your code here!
+
+	return firstInitialCapital(firstName) + '.' + firstInitialCapital(lastName);
 }
 
 export function addVAT(originalPrice, vatRate) {
