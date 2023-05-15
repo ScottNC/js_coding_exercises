@@ -162,6 +162,14 @@ describe("getMeanScore", () => {
   test("returns the mean to 2 decimal places", () => {
     expect(getMeanScore([24, 44, 56, 11, 12, 17, 34])).toBe(28.29);
   });
+
+  test("returns the mean of decimal numbers to 2 decimal places", () => {
+    expect(getMeanScore([10.3, 5.36, 9, 14.5612])).toBe(9.81);
+  });
+
+  test("returns the mean of negative numbers", () => {
+    expect(getMeanScore([-3, -5, 7, 9, -13])).toBe(-1);
+  });
 });
 
 describe("simpleFizzBuzz", () => {
