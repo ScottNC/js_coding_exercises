@@ -188,4 +188,20 @@ describe("simpleFizzBuzz", () => {
   test("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
     expect(simpleFizzBuzz(15)).toBe("fizzbuzz");
   });
+
+  test("returns 'fizz' if the large number is divisible by 3", () => {
+    expect(simpleFizzBuzz(99)).toBe("fizz");
+  });
+
+  test("returns 'buzz' if the large number is divisible by 5", () => {
+    expect(simpleFizzBuzz(100)).toBe("buzz");
+  });
+
+  test("returns number if large number is not divisible by 3 and 5", () => {
+    expect(simpleFizzBuzz(101)).toBe(101);
+  });
+
+  test("returns 'fizzbuzz' if the large number is divisible by 3 and 5", () => {
+    expect(simpleFizzBuzz(150)).toBe("fizzbuzz");
+  });
 });
