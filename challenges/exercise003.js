@@ -1,3 +1,7 @@
+import {
+	capitalize,
+} from './exercise001.js';
+
 export function getSquares(nums) {
 	if (nums === undefined) throw new Error('nums is required');
 
@@ -6,12 +10,19 @@ export function getSquares(nums) {
 		arr[index] = typeof(num) == 'number' ? num**2 : num
 	);
 
-	return nums
+	return nums;
 }
 
 export function camelCaseWords(words) {
 	if (words === undefined) throw new Error('words is required');
-	// Your code here!
+	
+	// if the word isn't first in the list, it is capitalised
+	words.forEach((word, index, arr) => {
+		if (index)
+			arr[index] = capitalize(word);
+	});
+
+	return words.join('');
 }
 
 export function getTotalSubjects(people) {
