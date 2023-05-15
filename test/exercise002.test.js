@@ -184,4 +184,28 @@ describe('hasMPostCode', () => {
 		};
 		expect(hasMPostCode(person)).toBe(false);
 	});
+
+	test('returns false if there is no postcode', () => {
+		const person = {
+			name: 'Gandalf',
+			age: 24000,
+			address: {
+				line1: 'The Shire',
+				city: 'Middle Earth',
+			},
+		};
+		expect(hasMPostCode(person)).toBe(false);
+	});
+
+	test('returns false if postcode is not string', () => {
+		const person = {
+			name: 'Shrek',
+			age: 32,
+			address: {
+				line1: 'The Swamp',
+				postCode: 567
+			},
+		};
+		expect(hasMPostCode(person)).toBe(false);
+	});
 });
