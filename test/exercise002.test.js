@@ -50,6 +50,33 @@ describe('isFromManchester', () => {
 		};
 		expect(isFromManchester(person)).toBe(false);
 	});
+
+	test('returns true if the person is from Manchester with lower case', () => {
+		const person = {
+			name: 'Yoda',
+			city: 'manchester',
+			age: 900,
+		};
+		expect(isFromManchester(person)).toBe(true);
+	});
+
+	test('returns true if the person is from Manchester with mixed cases', () => {
+		const person = {
+			name: 'Liam Gallagher',
+			city: 'mAnCHEsteR',
+			age: 50,
+		};
+		expect(isFromManchester(person)).toBe(true);
+	});
+
+	test('returns true if the city is a number', () => {
+		const person = {
+			name: 'Joe Biden',
+			city: 80,
+			age: 'Wilmington',
+		};
+		expect(isFromManchester(person)).toBe(false);
+	});
 });
 
 describe('getBusNumbers', () => {
