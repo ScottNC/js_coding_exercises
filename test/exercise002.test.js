@@ -208,4 +208,30 @@ describe('hasMPostCode', () => {
 		};
 		expect(hasMPostCode(person)).toBe(false);
 	});
+
+	test('returns true if the person has a postcode starting with m', () => {
+		const person = {
+			name: 'Mohammed',
+			age: 23,
+			address: {
+				line1: '1a Pool Road',
+				city: 'Manchester',
+				postCode: 'm16 8dr',
+			},
+		};
+		expect(hasMPostCode(person)).toBe(true);
+	});
+
+	test('returns false if the postcode starts with m but is not for Manchester', () => {
+		const person = {
+			name: 'Jahin',
+			age: 55,
+			address: {
+				line1: '11 Stone Street',
+				city: 'Maidstone',
+				postCode: 'me20 5br',
+			},
+		};
+		expect(hasMPostCode(person)).toBe(false);
+	});
 });
