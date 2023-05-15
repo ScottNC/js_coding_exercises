@@ -22,6 +22,14 @@ describe('getFillings', () => {
 		};
 		expect(getFillings(sandwich2)).toEqual(['smoked salmon', 'dill']);
 	});
+	
+	test('test is sanswich has no fillings', () => {
+		const sandwich = {
+			bread: 'Sourdough',
+			accompaniment: 'crisps',
+		};
+		expect(getFillings(sandwich)).toEqual(undefined);
+	});
 });
 
 describe('isFromManchester', () => {
