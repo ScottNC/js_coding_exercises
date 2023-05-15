@@ -27,7 +27,14 @@ export function camelCaseWords(words) {
 
 export function getTotalSubjects(people) {
 	if (people === undefined) throw new Error('people is required');
-	// Your code here!
+	
+	let subjects = [];
+
+	people.forEach(person => {
+		subjects = subjects.concat(person.subjects);
+	})
+
+	return subjects.length;
 }
 
 export function checkIngredients(menu, ingredient) {
