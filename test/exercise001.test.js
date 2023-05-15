@@ -138,6 +138,19 @@ describe("countLinuxUsers", () => {
     ];
     expect(countLinuxUsers(users)).toBe(5);
   });
+
+  test("returns the correct number of Linux users found with users without type", () => {
+    const users = [
+      { name: "Alan", OS: "Ubuntu 18.04", type: "Linux" },
+      { name: "Bill", OS: "Ubuntu 16.04" },
+      { name: "Charlie", OS: "Windows 10", type: "Windows" },
+      { name: "Derek", OS: "Mint 19.1", type: "Linux" },
+      { name: "Elephant", OS: "CentOS 7", type: "Linux" },
+      { name: "Frank", OS: "Fedora 28" },
+      { name: "Gary", OS: "Windows 95", type: "Windows" },
+    ];
+    expect(countLinuxUsers(users)).toBe(3);
+  });
 });
 
 describe("getMeanScore", () => {
