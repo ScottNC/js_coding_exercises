@@ -31,6 +31,18 @@ describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
   });
+
+  test("returns the initials of a firstname and surname for non capital letters", () => {
+    expect(generateInitials("homer", "simpson")).toBe("H.S");
+  });
+
+  test("returns the initials of a firstname", () => {
+    expect(generateInitials("Lizzo", "")).toBe("L");
+  });
+
+  test("returns the initials of a surname", () => {
+    expect(generateInitials("", "McLovin")).toBe("M");
+  });
 });
 
 describe("addVAT", () => {
