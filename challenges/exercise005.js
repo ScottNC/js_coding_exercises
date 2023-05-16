@@ -1,3 +1,7 @@
+import {
+	reverseWord
+} from './exercise001.js';
+
 export const findNextNumber = (nums, n) => {
 	if (nums === undefined) throw new Error('nums is required');
 	if (n === undefined) throw new Error('n is required');
