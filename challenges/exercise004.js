@@ -1,5 +1,6 @@
 import {
 	nthInitialCapital,
+	decimalPlace
 } from './exercise001.js';
 
 export function findSmallNums(nums) {
