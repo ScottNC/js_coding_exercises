@@ -32,7 +32,6 @@ export function camelCaseWords(words) {
 		return idx ? capitalize(word) : word;
 	}).join('');
 
-	return words.join('');
 }
 
 export function getTotalSubjects(people) {
