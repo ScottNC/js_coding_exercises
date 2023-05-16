@@ -58,5 +58,18 @@ export function checkIngredients(menu, ingredient) {
 export function duplicateNumbers(arr1, arr2) {
 	if (arr1 === undefined) throw new Error('arr1 is required');
 	if (arr2 === undefined) throw new Error('arr2 is required');
-	// Your code here!
+	
+	// remove duplicate values from initial array as they are irrelevant
+	arr1 = [...new Set(arr1)];
+	arr2 = [...new Set(arr2)];
+
+	// merges arrays and arranges in ascending order
+	arr1 = arr1.concat(arr2).sort();
+
+	// if there are any duplicates they will now be next to each other
+	// this checks to see if the number before it is the same
+	return arr1.filter((num, idx) => {
+		if (idx)
+			return num == arr1[idx - 1];
+	})
 }
