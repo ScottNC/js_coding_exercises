@@ -35,3 +35,33 @@ describe("sumMultiples", () => {
         }).toThrow("arr must be an array");
     });
 });
+
+describe("isValidDNA", () => {
+    test("returns true if chars are only C, G, T or A", () => {
+        expect(isValidDNA('CGTGGCACTA')).toBe(true);
+    });
+
+    test("returns true if chars are only C, G, T or A for lower case", () => {
+        expect(isValidDNA('ctagggatc')).toBe(true);
+    });
+
+    test("returns true if chars are only C, G, T or A for mixed cases", () => {
+        expect(isValidDNA('cGAtcAg')).toBe(true);
+    });
+
+    test("returns false if there are other chars", () => {
+        expect(isValidDNA('CGBTTAGT')).toBe(false);
+        expect(isValidDNA('tbbhjkjsa')).toBe(false);
+        expect(isValidDNA('Gbbtahshsj%%%2332')).toBe(false);
+    });
+
+    test("throws error for non string argument", () => {
+        expect(() => {
+            isValidDNA();
+        }).toThrow("str is required");
+
+        expect(() => {
+            isValidDNA(43);
+        }).toThrow("str must be string");
+    });
+});
