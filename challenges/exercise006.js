@@ -40,7 +40,13 @@ export const isValidDNA = (str) => {
  * @returns {String}
  */
 export const getComplementaryDNA = (str) => {
-	if (str === undefined) throw new Error('str is required');
+	// isValidDNA already tests if str is undefined
+	if (!isValidDNA(str)) throw new Error('str must only contain letters C, T, A and G');
+
+	const pairs = { A: 'T', C: 'G', T: 'A', G: 'C' };
+	const mapDNA = char => pairs[char.toUpperCase()];
+
+	return str.split('').map(mapDNA).join('');
 };
 
 /**
