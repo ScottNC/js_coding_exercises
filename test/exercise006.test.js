@@ -1,5 +1,7 @@
 import {
-    sumMultiples
+    sumMultiples,
+    isValidDNA,
+    getComplementaryDNA
 } from "../challenges/exercise006";
 
 describe("sumMultiples", () => {
@@ -62,6 +64,32 @@ describe("isValidDNA", () => {
 
         expect(() => {
             isValidDNA(43);
+        }).toThrow("str must be string");
+    });
+});
+
+describe("getComplementaryDNA", () => {
+    test("returns complemnetary DNA if chars are only C, G, T or A", () => {
+        expect(getComplementaryDNA('CGTGGCACTA')).toBe('GCACCGTGAT');
+    });
+
+    test("returns complemnetary DNA in upper case for lower case letters", () => {
+        expect(getComplementaryDNA('catg')).toBe('GTAC');
+    });
+
+    test("throws error for non DNA argument", () => {
+        expect(() => {
+            getComplementaryDNA('SHREK');
+        }).toThrow("str must only contain letters C, T, A and G");
+    });
+
+    test("throws error for non string argument", () => {
+        expect(() => {
+            getComplementaryDNA();
+        }).toThrow("str is required");
+
+        expect(() => {
+            getComplementaryDNA(43);
         }).toThrow("str must be string");
     });
 });
