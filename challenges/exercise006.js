@@ -12,6 +12,14 @@
  */
 export const sumMultiples = (arr) => {
 	if (arr === undefined) throw new Error('arr is required');
+
+	if (!Array.isArray(arr)) throw new Error('arr must be an array');
+
+	return arr.reduce((sum, num) => {
+		if (!(num % 3) || !(num % 5))
+			sum += num;
+		return sum;
+	}, 0);
 };
 
 /**
