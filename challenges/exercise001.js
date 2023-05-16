@@ -3,19 +3,10 @@
 //  	All the test cases must pass for each function.
 
 // Note: Be sure to read the corresponding .md file for each exercise, in the docs folder. 📘 👍
-
-
-export function nthInitialCapital(word, n = 1) {
-	// returns first letter and capitalises it
-	// 'hello' => 'H' 
-	return word.charAt(n - 1).toUpperCase();
-}
-
-export function decimalPlace(num, dec = 2) {
-	// changes decimal places on a number
-	// 3.141592 => 3.14
-	return parseFloat(num.toFixed(dec));
-}
+import {
+	nthInitialCapital,
+	decimalPlace
+} from './useful_functions.js';
 
 export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');
@@ -71,6 +62,7 @@ export function reverseWord(word) {
 export function reverseAllWords(words) {
 	if (words === undefined) throw new Error('words is required');
 	
+
 	words.forEach((word, index, arr) =>
 		arr[index] = reverseWord(word)
 	);
