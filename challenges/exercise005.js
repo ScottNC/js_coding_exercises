@@ -3,6 +3,10 @@ import {
 } from './exercise001.js';
 
 import {
+	findSentencesContaining
+} from './exercise004.js';
+
+import {
 	findSum
 } from './useful_functions.js';
 
@@ -58,7 +62,10 @@ export const arrShift = (arr) => {
 export const findNeedle = (haystack, searchTerm) => {
 	if (haystack === undefined) throw new Error('haystack is required');
 	if (searchTerm === undefined) throw new Error('searchTerm is required');
-	// Your code here!
+	
+	const needles = findSentencesContaining(Object.values(haystack), searchTerm)
+
+	return !!needles.length;
 };
 
 export const getWordFrequencies = (str) => {
