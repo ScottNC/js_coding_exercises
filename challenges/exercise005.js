@@ -2,6 +2,10 @@ import {
 	reverseWord
 } from './exercise001.js';
 
+import {
+	findSum
+} from './useful_functions.js';
+
 export const findNextNumber = (nums, n) => {
 	if (nums === undefined) throw new Error('nums is required');
 	if (n === undefined) throw new Error('n is required');
@@ -37,7 +41,10 @@ export const reverseNumber = (n) => {
 
 export const sumArrays = (arrs) => {
 	if (arrs === undefined) throw new Error('arrs is required');
-	// Your code here!
+	
+	// converts nested array into single array
+	const arr = [].concat(...arrs);
+	return findSum(arr);
 };
 
 export const arrShift = (arr) => {
