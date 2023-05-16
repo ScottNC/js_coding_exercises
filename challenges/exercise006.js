@@ -29,6 +29,9 @@ export const sumMultiples = (arr) => {
  */
 export const isValidDNA = (str) => {
 	if (str === undefined) throw new Error('str is required');
+	if (typeof(str) !== 'string') throw new Error('str must be string');
+
+	return str === str.replace(/[^cgta]/gi, '');
 };
 
 /**
