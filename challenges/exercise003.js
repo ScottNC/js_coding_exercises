@@ -19,21 +19,18 @@ export function getSquares(nums) {
 	if (nums === undefined) throw new Error('nums is required');
 
 	// if number, item is replaced by square of number
-	nums.forEach((num, index, arr) =>
-		arr[index] = typeof(num) == 'number' ? num**2 : num
-	);
-
-	return nums;
+	return nums.map(num => {
+		return typeof(num) == 'number' ? num**2 : num
+	});
 }
 
 export function camelCaseWords(words) {
 	if (words === undefined) throw new Error('words is required');
 	
 	// if the word isn't first in the list, it is capitalised
-	words.forEach((word, index, arr) => {
-		if (index)
-			arr[index] = capitalize(word);
-	});
+	return words.map((word, idx) => {
+		return idx ? capitalize(word) : word;
+	}).join('');
 
 	return words.join('');
 }
