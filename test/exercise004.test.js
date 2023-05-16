@@ -33,6 +33,17 @@ describe("findNamesBeginningWith", () => {
     expect(findNamesBeginningWith(names, "D")).toEqual(["Dave"]);
     expect(findNamesBeginningWith(names, "F")).toEqual([]);
   });
+
+  test("returns an array of names beginning with the specified character with different cases", () => {
+    const names = ["sally", "dave", "Susan", "Geoff", "Riley", "sam"];
+    expect(findNamesBeginningWith(names, "S")).toEqual([
+      "sally",
+      "Susan",
+      "sam",
+    ]);
+    expect(findNamesBeginningWith(names, "d")).toEqual(["dave"]);
+    expect(findNamesBeginningWith(names, "g")).toEqual(["Geoff"]);
+  });
 });
 
 describe("findVerbs", () => {
