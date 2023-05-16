@@ -7,7 +7,7 @@ export function findSmallNums(nums) {
 	if (!nums) throw new Error('nums is required');
 	
 	return nums.filter(num => {
-		return typeof(num) == 'number' && num < 1;
+		return typeof(num) === 'number' && num < 1;
 	});
 }
 
@@ -16,7 +16,7 @@ export function findNamesBeginningWith(names, char) {
 	if (!char) throw new Error('char is required');
 	
 	return names.filter(name => {
-		return nthInitialCapital(name) == char.toUpperCase();
+		return nthInitialCapital(name) === char.toUpperCase();
 	});
 }
 
@@ -24,7 +24,7 @@ export function findVerbs(words) {
 	if (!words) throw new Error('words is required');
 	
 	return words.filter(word => {
-		return typeof(word) == 'string' && word.length > 3 && word.slice(0,3) == 'to ';
+		return typeof(word) === 'string' && word.length > 3 && word.slice(0,3) === 'to ';
 	});
 }
 
@@ -32,7 +32,7 @@ export function getIntegers(nums) {
 	if (!nums) throw new Error('nums is required');
 	
 	return nums.filter(num => {
-		return typeof(num) == 'number' && Number.isInteger(num);
+		return typeof(num) === 'number' && Number.isInteger(num);
 	});
 }
 
@@ -48,7 +48,7 @@ export function getSquareRoots(nums) {
 	if (!nums) throw new Error('nums is required');
 	
 	return nums.map(num => {
-		return typeof(num) == 'number' && decimalPlace(num**0.5);
+		return typeof(num) === 'number' && decimalPlace(num**0.5);
 	});
 }
 
@@ -57,7 +57,7 @@ export function findSentencesContaining(sentences, str) {
 	if (!str) throw new Error('str is required');
 	
 	return sentences.filter(sentence => {
-		return typeof(sentence) == 'string' && 
+		return typeof(sentence) === 'string' && 
 			sentence.toLowerCase().includes(str.toLowerCase());
 	});
 }

@@ -71,7 +71,6 @@ export function reverseWord(word) {
 export function reverseAllWords(words) {
 	if (words === undefined) throw new Error('words is required');
 	
-	// runs reverseWord for each word and replaces value in array
 	words.forEach((word, index, arr) =>
 		arr[index] = reverseWord(word)
 	);
@@ -82,9 +81,8 @@ export function reverseAllWords(words) {
 export function countLinuxUsers(users) {
 	if (users === undefined) throw new Error('users is required');
 
-	// filters out users that don't use linux
 	let linuxUsers = users.filter(user => {
-		return user.type == 'Linux'
+		return user.type === 'Linux'
 	});
 
 	return linuxUsers.length;

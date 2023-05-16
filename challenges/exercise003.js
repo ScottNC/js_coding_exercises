@@ -20,7 +20,7 @@ export function getSquares(nums) {
 
 	// if number, item is replaced by square of number
 	return nums.map(num => {
-		return typeof(num) == 'number' ? num**2 : num
+		return typeof(num) === 'number' ? num**2 : num
 	});
 }
 
@@ -37,7 +37,7 @@ export function camelCaseWords(words) {
 export function getTotalSubjects(people) {
 	if (people === undefined) throw new Error('people is required');
 	
-	let subjects = concatItems(people, 'subjects', item => typeof(item) == 'string')
+	let subjects = concatItems(people, 'subjects', item => typeof(item) === 'string')
 	return subjects.length;
 }
 
@@ -46,7 +46,7 @@ export function checkIngredients(menu, ingredient) {
 	if (!ingredient) throw new Error('ingredient is required');
 
 	// Creates array of all times ingredient is used
-	let relevantIngredients = concatItems(menu, 'ingredients', item => item == ingredient);
+	let relevantIngredients = concatItems(menu, 'ingredients', item => item === ingredient);
 	// returns true if ingredient is used at all
 	return !!relevantIngredients.length;
 }
@@ -66,6 +66,6 @@ export function duplicateNumbers(arr1, arr2) {
 	// this checks to see if the number before it is the same
 	return arr1.filter((num, idx) => {
 		if (idx)
-			return num == arr1[idx - 1];
+			return num === arr1[idx - 1];
 	})
 }
