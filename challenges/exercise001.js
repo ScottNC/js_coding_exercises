@@ -5,7 +5,8 @@
 // Note: Be sure to read the corresponding .md file for each exercise, in the docs folder. 📘 👍
 import {
 	nthInitialCapital,
-	decimalPlace
+	decimalPlace,
+	findSum
 } from './useful_functions.js';
 
 export function capitalize(word) {
@@ -84,12 +85,8 @@ export function getMeanScore(scores) {
 	if (scores === undefined) throw new Error('scores is required');
 
 	// Finds the sum of the scores
-	let sum = 0
-	let frequency = scores.length
-
-	scores.forEach(score => {
-		sum += score;
-	}) 
+	const sum = findSum(scores);
+	const frequency = scores.length
 
 	// returns the mean of the score to two decimal points
 	return decimalPlace(sum/frequency);

@@ -9,3 +9,11 @@ export function decimalPlace(num, dec = 2) {
 	// 3.141592 => 3.14
 	return parseFloat(num.toFixed(dec));
 }
+
+export function findSum(nums) {
+    let sum = 0
+
+	nums.forEach(num => sum += num);
+
+    return sum;
+}
