@@ -16,6 +16,10 @@ describe("findSmallNums", () => {
     expect(findSmallNums([100, 88])).toEqual([]);
     expect(findSmallNums([])).toEqual([]);
   });
+
+  test("removes non numerical items", () => {
+    expect(findSmallNums([8, 1, 1.3, 0.9, 0.4, -1, 'banana'])).toEqual([0.9, 0.4, -1]);
+  });
 });
 
 describe("findNamesBeginningWith", () => {
