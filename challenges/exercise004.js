@@ -23,7 +23,7 @@ export function findVerbs(words) {
 	if (!words) throw new Error('words is required');
 	
 	return words.filter(word => {
-		return word.length > 3 && word.slice(0,3) == 'to ';
+		return typeof(word) == 'string' && word.length > 3 && word.slice(0,3) == 'to ';
 	});
 }
 
