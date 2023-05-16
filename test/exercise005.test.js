@@ -59,6 +59,10 @@ describe("reverseNumber", () => {
     expect(reverseNumber(12345)).toBe(54321);
     expect(reverseNumber(100)).toBe(1); // No leading 0 necessary
   });
+
+  test("reverses the digits of a number for a decimal number", () => {
+    expect(reverseNumber(3.14)).toBe(41.3);
+  });
 });
 
 describe("sumArrays", () => {
