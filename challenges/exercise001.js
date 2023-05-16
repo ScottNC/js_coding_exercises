@@ -11,7 +11,7 @@ export function nthInitialCapital(word, n = 1) {
 	return word.charAt(n - 1).toUpperCase();
 }
 
-function decimalPlace(num, dec = 2) {
+export function decimalPlace(num, dec = 2) {
 	// changes decimal places on a number
 	// 3.141592 => 3.14
 	return parseFloat(num.toFixed(dec));

@@ -37,7 +37,7 @@ export function getIntegers(nums) {
 
 export function getCities(users) {
 	if (!users) throw new Error('users is required');
-	// Your code here
+
 	return users.map(user => {
 		return user.data && user.data.city && user.data.city.displayName;
 	});
@@ -45,7 +45,10 @@ export function getCities(users) {
 
 export function getSquareRoots(nums) {
 	if (!nums) throw new Error('nums is required');
-	// Your code here
+	
+	return nums.map(num => {
+		return typeof(num) == 'number' && decimalPlace(num**0.5);
+	});
 }
 
 export function findSentencesContaining(sentences, str) {
