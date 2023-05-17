@@ -13,7 +13,7 @@
 export const sumMultiples = (arr) => {
 	if (arr === undefined) throw new Error('arr is required');
 
-	if (!Array.isArray(arr)) throw new Error('arr must be an array');
+	if (!Array.isArray(arr)) throw new Error('arr must be array');
 
 	return arr.reduce((sum, num) => {
 		if (!(num % 3) || !(num % 5))
@@ -56,6 +56,7 @@ export const getComplementaryDNA = (str) => {
  */
 export const isItPrime = (n) => {
 	if (n === undefined) throw new Error('n is required');
+	if (typeof(n) !== 'number') throw new Error('n must be number');
 
 	if (n === 2 || n === 3) return true;
 	if (n === 1 || !(n % 2) || !(n % 3)) return false;
@@ -89,6 +90,7 @@ export const isItPrime = (n) => {
 export const createMatrix = (n, fill) => {
 	if (n === undefined) throw new Error('n is required');
 	if (fill === undefined) throw new Error('fill is required');
+	if (typeof(n) !== 'number') throw new Error('n must be number');
 
 	const row = Array(n).fill(fill);
 	const matrix = Array(n).fill(row);

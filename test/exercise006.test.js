@@ -6,6 +6,20 @@ import {
     createMatrix
 } from "../challenges/exercise006";
 
+
+const testInputType = (func, type, argName, listArgs, argIsArray = true, testFunc = test)  => {
+    testFunc("throws error for non " + type + " argument", () => {
+        expect(() => {
+            func();
+        }).toThrow(argName + " is required");
+
+        listArgs.forEach( arg => {
+            arg = argIsArray? [arg] : arg;
+            expect(() =>  func(...arg)).toThrow(argName + " must be " + type)
+        });
+    });
+}
+
 describe("sumMultiples", () => {
     test("returns sum of multiples of 3 and 5", () => {
         expect(sumMultiples([5, 3])).toBe(8);
@@ -25,19 +39,7 @@ describe("sumMultiples", () => {
         expect(sumMultiples([])).toBe(0);
     });
 
-    test("throws error for non array argument", () => {
-        expect(() => {
-            sumMultiples();
-        }).toThrow("arr is required");
-
-        expect(() => {
-            sumMultiples(43);
-        }).toThrow("arr must be an array");
-
-        expect(() => {
-            sumMultiples("hello");
-        }).toThrow("arr must be an array");
-    });
+    testInputType(sumMultiples, 'array', 'arr', ['hello there', 43, false]);
 });
 
 describe("isValidDNA", () => {
@@ -59,15 +61,7 @@ describe("isValidDNA", () => {
         expect(isValidDNA('Gbbtahshsj%%%2332')).toBe(false);
     });
 
-    test("throws error for non string argument", () => {
-        expect(() => {
-            isValidDNA();
-        }).toThrow("str is required");
-
-        expect(() => {
-            isValidDNA(43);
-        }).toThrow("str must be string");
-    });
+    testInputType(isValidDNA, 'string', 'str', [[1,2,3], 43, false]);
 });
 
 describe("getComplementaryDNA", () => {
@@ -85,15 +79,7 @@ describe("getComplementaryDNA", () => {
         }).toThrow("str must only contain letters C, T, A and G");
     });
 
-    test("throws error for non string argument", () => {
-        expect(() => {
-            getComplementaryDNA();
-        }).toThrow("str is required");
-
-        expect(() => {
-            getComplementaryDNA(43);
-        }).toThrow("str must be string");
-    });
+    testInputType(getComplementaryDNA, 'string', 'str', [[1,2,3], 43, false]);
 });
 
 describe("isItPrime", () => {
@@ -153,6 +139,8 @@ describe("isItPrime", () => {
     test("returns square of prime as false", () => {
         expect(isItPrime(292681)).toBe(false);
     });
+
+    testInputType(isItPrime, 'number', 'n', ['hello there', [1,2,3], false]);
 });
 
 describe("createMatrix", () => {
@@ -186,4 +174,7 @@ describe("createMatrix", () => {
             [29, 29, 29, 29, 29, 29, 29, 29, 29, 29]
         ]);
     });
+
+    testInputType(createMatrix, 'number', 'n', [['hello there','foo'], [[1,2,3], 'foo'], [false, 'foo']], false);
+
 });
