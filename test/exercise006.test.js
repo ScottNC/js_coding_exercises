@@ -1,7 +1,8 @@
 import {
     sumMultiples,
     isValidDNA,
-    getComplementaryDNA
+    getComplementaryDNA,
+    isItPrime
 } from "../challenges/exercise006";
 
 describe("sumMultiples", () => {
