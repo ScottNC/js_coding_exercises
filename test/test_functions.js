@@ -26,7 +26,8 @@ const allTypes = Object.keys(typeValueExamples);
 // this creates a map of what input type we're testing so it tests all the other input types
 // for example {string: [43, [1,2,3] ...]}
 const typeToArguments = allTypes.reduce((allDifferentTypes, key) => {
-    allDifferentTypes[key] = allTypes.filter((key2) => key2 !== key);
+    // typeof(array) will output object so we want to avoid including arrays when testing objects
+    allDifferentTypes[key] = allTypes.filter((key2) => key2 !== key && !(key === 'object' && key2 === 'array'));
     allDifferentTypes[key] = allDifferentTypes[key].map((type => typeValueExamples[type]))
     return allDifferentTypes;
 }, {});
