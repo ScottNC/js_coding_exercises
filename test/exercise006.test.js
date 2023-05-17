@@ -93,3 +93,50 @@ describe("getComplementaryDNA", () => {
         }).toThrow("str must be string");
     });
 });
+
+describe("isItPrime", () => {
+    test("returns 2 and 3 as true", () => {
+        expect(isItPrime(2)).toBe(true);
+        expect(isItPrime(3)).toBe(true);
+    });
+
+    test("returns 5 as true", () => {
+        expect(isItPrime(5)).toBe(true);
+    });
+
+    test("returns 7 as true", () => {
+        expect(isItPrime(7)).toBe(true);
+    });
+
+    test("returns large prime numbers as true", () => {
+        expect(isItPrime(271)).toBe(true);
+    });
+
+    test("returns 1 as false", () => {
+        expect(isItPrime(1)).toBe(false);
+    });
+
+    test("returns 4 as false", () => {
+        expect(isItPrime(4)).toBe(false);
+    });
+
+    test("returns 100 as false", () => {
+        expect(isItPrime(100)).toBe(false);
+    });
+
+    test("returns non prime 6n - 1 as false", () => {
+        expect(isItPrime(35)).toBe(false);
+    });
+
+    test("returns non prime 6n + 1 as false", () => {
+        expect(isItPrime(91)).toBe(false);
+    });
+
+    test("returns large non prime numbers as false", () => {
+        expect(isItPrime(5000001)).toBe(false);
+    });
+
+    test("returns square of prime as false", () => {
+        expect(isItPrime(292681)).toBe(false);
+    });
+});
