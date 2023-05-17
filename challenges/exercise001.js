@@ -1,8 +1,3 @@
-// 👉 	Each function below has some test cases in `exercise001.test.js`
-// 		You can run these tests with `npm test`.
-//  	All the test cases must pass for each function.
-
-// Note: Be sure to read the corresponding .md file for each exercise, in the docs folder. 📘 👍
 import {
 	nthInitialCapital,
 	decimalPlace,
@@ -11,6 +6,7 @@ import {
 
 export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');
+	if (typeof(word) !== 'string') throw new Error('word must be string');
 
 	// Finds first letter and converts to upper case and adds letter to rest of word
 	let initial = nthInitialCapital(word);
@@ -20,6 +16,8 @@ export function capitalize(word) {
 export function generateInitials(firstName, lastName) {
 	if (firstName === undefined) throw new Error('firstName is required');
 	if (lastName === undefined) throw new Error('lastName is required');
+	if (typeof(firstName) !== 'string') throw new Error('firstName must be string');
+	if (typeof(lastName) !== 'string') throw new Error('lastName must be string');
 
 	return nthInitialCapital(firstName) + 
 		((firstName && lastName) && '.') +  // Will only add a point if both names are present
@@ -27,23 +25,26 @@ export function generateInitials(firstName, lastName) {
 }
 
 export function addVAT(originalPrice, vatRate) {
-	if (originalPrice === undefined)
-		throw new Error('originalPrice is requied');
+	if (originalPrice === undefined) throw new Error('originalPrice is requied');
 	if (vatRate === undefined) throw new Error('vatRate is required');
+	if (typeof(originalPrice) !== 'number') throw new Error('originalPrice must be number');
+	if (typeof(vatRate) !== 'number') throw new Error('vatRate must be number');
 	
 	return decimalPlace(originalPrice + originalPrice*vatRate/100);
 }
 
 export function getSalePrice(originalPrice, reduction) {
-	if (originalPrice === undefined)
-		throw new Error('originalPrice is required');
+	if (originalPrice === undefined) throw new Error('originalPrice is required');
 	if (reduction === undefined) throw new Error('reduction is required');
+	if (typeof(originalPrice) !== 'number') throw new Error('originalPrice must be number');
+	if (typeof(reduction) !== 'number') throw new Error('reduction must be number');
 	
 	return addVAT(originalPrice, -reduction);
 }
 
 export function getMiddleCharacter(str) {
 	if (str === undefined) throw new Error('str is required');
+	if (typeof(str) !== 'string') throw new Error('str must be string');
 		
 	let len = str.length;
 
@@ -55,6 +56,7 @@ export function getMiddleCharacter(str) {
 
 export function reverseWord(word) {
 	if (word === undefined) throw new Error('word is required');
+	if (typeof(word) !== 'string') throw new Error('word must be string');
 	
 	// creates an array of all letters, then reverses the array and reverts it back to string
 	return word.split('').reverse().join('');
@@ -62,7 +64,7 @@ export function reverseWord(word) {
 
 export function reverseAllWords(words) {
 	if (words === undefined) throw new Error('words is required');
-	
+	if (!Array.isArray(words)) throw new Error('words must be array');
 
 	words.forEach((word, index, arr) =>
 		arr[index] = reverseWord(word)
@@ -73,6 +75,7 @@ export function reverseAllWords(words) {
 
 export function countLinuxUsers(users) {
 	if (users === undefined) throw new Error('users is required');
+	if (!Array.isArray(users)) throw new Error('users must be array');
 
 	let linuxUsers = users.filter(user => {
 		return user.type === 'Linux'
@@ -83,6 +86,7 @@ export function countLinuxUsers(users) {
 
 export function getMeanScore(scores) {
 	if (scores === undefined) throw new Error('scores is required');
+	if (!Array.isArray(scores)) throw new Error('scores must be array');
 
 	// Finds the sum of the scores
 	const sum = findSum(scores);
@@ -94,6 +98,7 @@ export function getMeanScore(scores) {
 
 export function simpleFizzBuzz(n) {
 	if (n === undefined) throw new Error('n is required');
+	if (typeof(n) !== 'number') throw new Error('n must be number');
 	
 	// we have an empty string for res so we can add fizz or buzz to it
 	let res = '';
