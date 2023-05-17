@@ -6,6 +6,11 @@ import {
   duplicateNumbers,
 } from "../challenges/exercise003";
 
+import {
+  simpleTypeTest,
+  testMultipleArgs
+} from "./test_functions.js";
+
 describe("camelCaseWords", () => {
   test("camel cases a single word (i.e. no capital letter at beginning)", () => {
     expect(camelCaseWords(["my"])).toBe("my");
@@ -23,6 +28,8 @@ describe("camelCaseWords", () => {
       "isHigherThanMinNumber"
     );
   });
+
+  simpleTypeTest(camelCaseWords, 'array', 'words');
 });
 
 describe("getSquares", () => {
@@ -46,6 +53,8 @@ describe("getSquares", () => {
   test("returns an array of squares for large numbers", () => {
     expect(getSquares([2, 'orange', 5])).toEqual([4, 'orange', 25]);
   });
+
+  simpleTypeTest(getSquares, 'array', 'nums');
 });
 
 describe("getTotalSubjects", () => {
@@ -96,6 +105,8 @@ describe("getTotalSubjects", () => {
     ];
     expect(getTotalSubjects(people)).toBe(1);
   });
+
+  simpleTypeTest(getTotalSubjects, 'array', 'people');
 });
 
 describe("checkIngredients", () => {
@@ -156,6 +167,15 @@ describe("checkIngredients", () => {
 
     expect(checkIngredients(menu, "dark chocolate")).toBe(true);
   });
+
+  testMultipleArgs(checkIngredients, [{
+    name: 'menu',
+    type: 'array'
+  }, {
+    name: 'ingredient',
+    type: 'string',
+    skip: true
+  }]);
 });
 
 describe("duplicateNumbers", () => {
@@ -192,4 +212,12 @@ describe("duplicateNumbers", () => {
     arr2 = [3, 3, 3, 4, 5];
     expect(duplicateNumbers(arr1, arr2)).toEqual([3]);
   });
+
+  testMultipleArgs(duplicateNumbers, [{
+    name: 'arr1',
+    type: 'array'
+  }, {
+    name: 'arr2',
+    type: 'array'
+  }]);
 });
