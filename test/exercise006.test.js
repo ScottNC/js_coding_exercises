@@ -7,10 +7,10 @@ import {
 } from "../challenges/exercise006";
 
 
-const testInputType = (func, type, argName, listArgs, argIsArray = true, testFunc = test)  => {
+const testInputType = (func, type, argName, listArgs, argIsArray = true, argOrder = 0, testFunc = test)  => {
     testFunc("throws error for non " + type + " argument", () => {
         expect(() => {
-            func();
+            func(...Array(argOrder).fill(null));
         }).toThrow(argName + " is required");
 
         listArgs.forEach( arg => {
