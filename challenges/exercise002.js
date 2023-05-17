@@ -3,13 +3,11 @@ import {
 } from './common_functions.js';
 
 export function getFillings(sandwich) {
-	if (sandwich === undefined) throw new Error('sandwich is required');
 	if (typeof(sandwich) !== 'object') throw new Error('sandwich must be object');
 	return sandwich.fillings || [];
 }
 
 export function isFromManchester(person) {
-	if (person === undefined) throw new Error('person is required');
 	if (typeof(person) !== 'object') throw new Error('person must be object');
 
 	if (typeof(person.city) !== 'string') return false;
@@ -18,13 +16,11 @@ export function isFromManchester(person) {
 }
 
 export function getBusNumbers(people) {
-	if (people === undefined) throw new Error('people is required');
 	if (typeof(people) !== 'number') throw new Error('people must be number');
 	return Math.ceil(people/40);
 }
 
 export function countSheep(arr) {
-	if (arr === undefined) throw new Error('arr is required');
 	if (!Array.isArray(arr)) throw new Error('arr must be array');
 
 	let sheep = arr.filter(animal => {
@@ -35,7 +31,6 @@ export function countSheep(arr) {
 }
 
 export function hasMPostCode(person) {
-	if (person === undefined) throw new Error('person is required');
 	if (typeof(person) !== 'object') throw new Error('person must be object');
 
 	if (person && person.address && typeof(person.address.postCode) === 'string') {

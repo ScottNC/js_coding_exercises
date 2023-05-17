@@ -5,7 +5,6 @@ import {
 } from './common_functions.js';
 
 export function capitalize(word) {
-	if (word === undefined) throw new Error('word is required');
 	if (typeof(word) !== 'string') throw new Error('word must be string');
 
 	// Finds first letter and converts to upper case and adds letter to rest of word
@@ -14,8 +13,6 @@ export function capitalize(word) {
 }
 
 export function generateInitials(firstName, lastName) {
-	if (firstName === undefined) throw new Error('firstName is required');
-	if (lastName === undefined) throw new Error('lastName is required');
 	if (typeof(firstName) !== 'string') throw new Error('firstName must be string');
 	if (typeof(lastName) !== 'string') throw new Error('lastName must be string');
 
@@ -25,8 +22,6 @@ export function generateInitials(firstName, lastName) {
 }
 
 export function addVAT(originalPrice, vatRate) {
-	if (originalPrice === undefined) throw new Error('originalPrice is required');
-	if (vatRate === undefined) throw new Error('vatRate is required');
 	if (typeof(originalPrice) !== 'number') throw new Error('originalPrice must be number');
 	if (typeof(vatRate) !== 'number') throw new Error('vatRate must be number');
 	
@@ -34,8 +29,6 @@ export function addVAT(originalPrice, vatRate) {
 }
 
 export function getSalePrice(originalPrice, reduction) {
-	if (originalPrice === undefined) throw new Error('originalPrice is required');
-	if (reduction === undefined) throw new Error('reduction is required');
 	if (typeof(originalPrice) !== 'number') throw new Error('originalPrice must be number');
 	if (typeof(reduction) !== 'number') throw new Error('reduction must be number');
 	
@@ -43,7 +36,6 @@ export function getSalePrice(originalPrice, reduction) {
 }
 
 export function getMiddleCharacter(str) {
-	if (str === undefined) throw new Error('str is required');
 	if (typeof(str) !== 'string') throw new Error('str must be string');
 		
 	let len = str.length;
@@ -55,7 +47,6 @@ export function getMiddleCharacter(str) {
 }
 
 export function reverseWord(word) {
-	if (word === undefined) throw new Error('word is required');
 	if (typeof(word) !== 'string') throw new Error('word must be string');
 	
 	// creates an array of all letters, then reverses the array and reverts it back to string
@@ -63,7 +54,6 @@ export function reverseWord(word) {
 }
 
 export function reverseAllWords(words) {
-	if (words === undefined) throw new Error('words is required');
 	if (!Array.isArray(words)) throw new Error('words must be array');
 
 	words.forEach((word, index, arr) =>
@@ -74,7 +64,6 @@ export function reverseAllWords(words) {
 }
 
 export function countLinuxUsers(users) {
-	if (users === undefined) throw new Error('users is required');
 	if (!Array.isArray(users)) throw new Error('users must be array');
 
 	let linuxUsers = users.filter(user => {
@@ -85,7 +74,6 @@ export function countLinuxUsers(users) {
 }
 
 export function getMeanScore(scores) {
-	if (scores === undefined) throw new Error('scores is required');
 	if (!Array.isArray(scores)) throw new Error('scores must be array');
 
 	// Finds the sum of the scores
@@ -97,7 +85,6 @@ export function getMeanScore(scores) {
 }
 
 export function simpleFizzBuzz(n) {
-	if (n === undefined) throw new Error('n is required');
 	if (typeof(n) !== 'number') throw new Error('n must be number');
 	
 	// we have an empty string for res so we can add fizz or buzz to it

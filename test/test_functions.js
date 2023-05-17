@@ -1,10 +1,5 @@
 const testInputType = (func, type, argName, listArgs, argIsArray, argOrder, testFunc)  => {
     testFunc("throws error for non " + type + " argument", () => {
-        expect(() => {
-            // we want to test if specific argument is undefined so we will fill the previous arguments with null
-            func(...Array(argOrder).fill(null));
-        }).toThrow(argName + " is required");
-
         listArgs.forEach( arg => {
             // argIsArray is useful for when the input argument is itself an array so it doesn't use the values in the array as different inputs
             arg = argIsArray? [arg] : arg;
@@ -19,7 +14,8 @@ const typeValueExamples = {
     array : [ 1, 2, 3 ],
     object : { a : 1 },
     boolean : false,
-    null: null
+    null: null,
+    undefined: undefined
 };
 
 const allTypes = Object.keys(typeValueExamples); 
