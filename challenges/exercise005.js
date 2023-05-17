@@ -8,7 +8,7 @@ import {
 
 import {
 	findSum
-} from './useful_functions.js';
+} from './common_functions.js';
 
 export const findNextNumber = (nums, n) => {
 	if (nums === undefined) throw new Error('nums is required');

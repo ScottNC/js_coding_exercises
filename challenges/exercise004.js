@@ -1,7 +1,7 @@
 import {
 	nthInitialCapital,
 	decimalPlace
-} from './useful_functions.js';
+} from './common_functions.js';
 
 export function findSmallNums(nums) {
 	if (!nums) throw new Error('nums is required');

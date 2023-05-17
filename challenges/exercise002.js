@@ -1,6 +1,6 @@
 import {
 	nthInitialCapital,
-} from './useful_functions.js';
+} from './common_functions.js';
 
 export function getFillings(sandwich) {
 	if (sandwich === undefined) throw new Error('ingredients is required');

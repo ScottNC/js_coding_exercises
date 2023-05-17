@@ -7,7 +7,7 @@ import {
 	nthInitialCapital,
 	decimalPlace,
 	findSum
-} from './useful_functions.js';
+} from './common_functions.js';
 
 export function capitalize(word) {
 	if (word === undefined) throw new Error('word is required');

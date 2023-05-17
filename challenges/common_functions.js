@@ -1,5 +1,7 @@
+// This is a list of functions that are repeated in this exercise
+
 export function nthInitialCapital(word, n = 1) {
-	// returns first letter and capitalises it
+	// returns nth letter and capitalises it
 	// 'hello' => 'H' 
 	return word.charAt(n - 1).toUpperCase();
 }
