@@ -60,22 +60,16 @@ export const isItPrime = (n) => {
 	if (n === 2 || n === 3) return true;
 	if (n === 1 || !(n % 2) || !(n % 3)) return false;
 
-	// every prime number greater than 3 must either be 6n+1 or 6n-1
-	// by checking if it isn't either we can find if it isn't a prime and prevent having to iterate
-	// the code will still work by removing this it just saves coding power
-	if (((n - 1) % 6) && ((n + 1) % 6)) 
-		return false;
+	let possibleSquareOfPrime = 25;
 
-	let iteration = 1;
-
-	// this iterates through every multiple of 6
-	// if n is divisible by potential primes greater than 3 (6n±1) then we know it's not prime
-	// if we iterate past the square root of n, n/factor must be smaller than the factor so the code will have passed it
-	// we can iterate through every number but this requires less iterations (we avoid checking multiples of 2 and 3 as it would be pointless)
-	while (6 * iteration - 1 <= n**0.5) {
-		if (!((n % (6 * iteration - 1)) && (n % (6 * iteration + 1)))) 
+	// every prime number, p, greater than 3 obeys the rule p = √(24n + 1) where n is an integer
+	// if it isn't then it cannot be a prime
+	// the code iterates through every possible value of 24n + 1 where n >= 1
+	// if the argument is not divisible by any prime below the square root then it is itself a prime
+	while (possibleSquareOfPrime <= n) {
+		if (!(n % (possibleSquareOfPrime**0.5))) 
 			return false;
-		iteration++;
+		possibleSquareOfPrime += 24;
 	}
 
 	return true;
