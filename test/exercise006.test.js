@@ -8,7 +8,8 @@ import {
 } from "../challenges/exercise006";
 
 import {
-    testInputType
+    simpleTypeTest,
+    testMultipleArgs
 } from "./test_functions.js";
 
 describe("sumMultiples", () => {
@@ -30,7 +31,7 @@ describe("sumMultiples", () => {
         expect(sumMultiples([])).toBe(0);
     });
 
-    testInputType(sumMultiples, 'array', 'arr', ['hello there', 43, false]);
+    simpleTypeTest(sumMultiples, 'array', 'arr');
 });
 
 describe("isValidDNA", () => {
@@ -52,7 +53,7 @@ describe("isValidDNA", () => {
         expect(isValidDNA('Gbbtahshsj%%%2332')).toBe(false);
     });
 
-    testInputType(isValidDNA, 'string', 'str', [[1,2,3], 43, false]);
+    simpleTypeTest(isValidDNA, 'string', 'str');
 });
 
 describe("getComplementaryDNA", () => {
@@ -70,7 +71,7 @@ describe("getComplementaryDNA", () => {
         }).toThrow("str must only contain letters C, T, A and G");
     });
 
-    testInputType(getComplementaryDNA, 'string', 'str', [[1,2,3], 43, false]);
+    simpleTypeTest(getComplementaryDNA, 'string', 'str');
 });
 
 describe("isItPrime", () => {
@@ -131,7 +132,7 @@ describe("isItPrime", () => {
         expect(isItPrime(292681)).toBe(false);
     });
 
-    testInputType(isItPrime, 'number', 'n', ['hello there', [1,2,3], false]);
+    simpleTypeTest(isItPrime, 'number', 'n');
 });
 
 describe("createMatrix", () => {
@@ -166,7 +167,18 @@ describe("createMatrix", () => {
         ]);
     });
 
-    testInputType(createMatrix, 'number', 'n', [['hello there','foo'], [[1,2,3], 'foo'], [false, 'foo']], false);
+    // testInputType(createMatrix, 'number', 'n', [['hello there','foo'], [[1,2,3], 'foo'], [false, 'foo']], false);
+    testMultipleArgs(createMatrix, [
+        {
+            type: 'number',
+            name: 'n'
+        },
+        {
+            type: 'string',
+            name: 'fill',
+            skip: true
+        }
+    ])
 
 });
 
@@ -237,6 +249,17 @@ describe("areWeCovered", () => {
         expect(areWeCovered(staff3, "Wednesday")).toEqual(false);
     });
 
-    testInputType(areWeCovered, 'array', 'staff', [['hello there','Thursday'], [56, 'Thursday'], [false, 'Thursday']], false);
-    testInputType(areWeCovered, 'string', 'day', [[staff1,staff1], [staff1, 729], [staff1, true]], false, 1);
+    // testInputType(areWeCovered, 'array', 'staff', [['hello there','Thursday'], [56, 'Thursday'], [false, 'Thursday']], false);
+    // testInputType(areWeCovered, 'string', 'day', [[staff1,staff1], [staff1, 729], [staff1, true]], false, 1);
+    testMultipleArgs(areWeCovered, [
+        {
+            type: 'array',
+            name: 'staff'
+        },
+        {
+            type: 'string',
+            name: 'day'
+        }
+    ]);
+
 });
