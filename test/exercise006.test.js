@@ -109,6 +109,10 @@ describe("isItPrime", () => {
         expect(isItPrime(7)).toBe(true);
     });
 
+    test("returns 11 as true", () => {
+        expect(isItPrime(11)).toBe(true);
+    });
+
     test("returns large prime numbers as true", () => {
         expect(isItPrime(271)).toBe(true);
     });
@@ -119,6 +123,14 @@ describe("isItPrime", () => {
 
     test("returns 4 as false", () => {
         expect(isItPrime(4)).toBe(false);
+    });
+
+    test("returns 10 as false", () => {
+        expect(isItPrime(10)).toBe(false);
+    });
+
+    test("returns 25 as false", () => {
+        expect(isItPrime(25)).toBe(false);
     });
 
     test("returns 100 as false", () => {
