@@ -2,7 +2,8 @@ import {
     sumMultiples,
     isValidDNA,
     getComplementaryDNA,
-    isItPrime
+    isItPrime,
+    createMatrix
 } from "../challenges/exercise006";
 
 describe("sumMultiples", () => {
@@ -151,5 +152,38 @@ describe("isItPrime", () => {
 
     test("returns square of prime as false", () => {
         expect(isItPrime(292681)).toBe(false);
+    });
+});
+
+describe("createMatrix", () => {
+    test("returns 3x3 matrix for 'foo'", () => {
+        expect(createMatrix(3, "foo")).toEqual([
+            ["foo", "foo", "foo"],
+            ["foo", "foo", "foo"],
+            ["foo", "foo", "foo"]
+        ]);
+    });
+
+    test("returns 1x1 matrix for 'bar'", () => {
+        expect(createMatrix(1, "bar")).toEqual([["bar"]]);
+    });
+
+    test("returns empty array for 0", () => {
+        expect(createMatrix(0, "baz")).toEqual([]);
+    });
+
+    test("returns large array for number input", () => {
+        expect(createMatrix(10, 29)).toEqual([
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29],
+            [29, 29, 29, 29, 29, 29, 29, 29, 29, 29]
+        ]);
     });
 });
