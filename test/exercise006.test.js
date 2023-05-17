@@ -3,7 +3,8 @@ import {
     isValidDNA,
     getComplementaryDNA,
     isItPrime,
-    createMatrix
+    createMatrix,
+    areWeCovered
 } from "../challenges/exercise006";
 
 
@@ -177,4 +178,75 @@ describe("createMatrix", () => {
 
     testInputType(createMatrix, 'number', 'n', [['hello there','foo'], [[1,2,3], 'foo'], [false, 'foo']], false);
 
+});
+
+describe("areWeCovered", () => {
+    const staff1 = [
+        { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+        { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+        { name: "Alex", rota: ["Thursday", "Tuesday", "Wednesday"] },
+    ];
+
+    const staff2 = [
+        { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+        { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+        { name: "Alex", rota: ["Thursday", "Tuesday", "Wednesday"] },
+        { name: "Shrek"},
+    ];
+
+    const staff3 = [
+        { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+        { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+        { name: "Alex", rota: ["Thursday", "Tuesday", "Wednesday"] },
+        { name: "Shrek", rota: ["Thursday", 390, true]},
+    ];
+
+    const staff4 = [
+        { name: "Sally", rota: ["monday", "tuesday", "friday"] },
+        { name: "Pedro", rota: ["saturday", "sunday", "tuesday", "wednesday"] },
+        { name: "Alex", rota: ["whursday", "tuesday", "wednesday"] },
+    ];
+
+    test("returns true when three staff can cover a day", () => {
+        expect(areWeCovered(staff1, "Tuesday")).toEqual(true);
+    });
+
+    test("returns false when three staff can't cover a day", () => {
+        expect(areWeCovered(staff1, "Wednesday")).toEqual(false);
+    });
+
+    test("returns true when three staff can cover a day with non capital staff input", () => {
+        expect(areWeCovered(staff4, "Tuesday")).toEqual(true);
+    });
+
+    test("returns false when three staff can't cover a day with non capital staff input", () => {
+        expect(areWeCovered(staff4, "Wednesday")).toEqual(false);
+    });
+
+    test("returns true when three staff can cover a day with non capital day input", () => {
+        expect(areWeCovered(staff1, "tuesday")).toEqual(true);
+    });
+
+    test("returns false when three staff can't cover a day", () => {
+        expect(areWeCovered(staff1, "Wednesday")).toEqual(false);
+    });
+
+    test("returns true when three staff can cover a day if there are staff members with no rota", () => {
+        expect(areWeCovered(staff2, "Tuesday")).toEqual(true);
+    });
+
+    test("returns false when three staff can't cover a day if there are staff members with no rota", () => {
+        expect(areWeCovered(staff2, "Wednesday")).toEqual(false);
+    });
+
+    test("returns true when three staff can cover a day if there are rotas with non string values", () => {
+        expect(areWeCovered(staff3, "Tuesday")).toEqual(true);
+    });
+
+    test("returns false when three staff can't cover a day if there are rotas with non string values", () => {
+        expect(areWeCovered(staff3, "Wednesday")).toEqual(false);
+    });
+
+    testInputType(areWeCovered, 'array', 'staff', [['hello there','Thursday'], [56, 'Thursday'], [false, 'Thursday']], false);
+    testInputType(areWeCovered, 'string', 'day', [[staff1,staff1], [staff1, 729], [staff1, true]], false, 1);
 });
