@@ -13,6 +13,8 @@ import {
 export const findNextNumber = (nums, n) => {
 	if (nums === undefined) throw new Error('nums is required');
 	if (n === undefined) throw new Error('n is required');
+	if (!Array.isArray(nums)) throw new Error('nums must be array');
+	if (typeof(n) !== 'number') throw new Error('n must be number');
 	
 	const idx = nums.indexOf(n);
 
@@ -24,6 +26,7 @@ export const findNextNumber = (nums, n) => {
 
 export const count1sand0s = (str) => {
 	if (str === undefined) throw new Error('str is required');
+	if (typeof(str) !== 'string') throw new Error('str must be string');
 
 	const arr = str.split('');
 
@@ -38,6 +41,7 @@ export const count1sand0s = (str) => {
 
 export const reverseNumber = (n) => {
 	if (n === undefined) throw new Error('n is required');
+	if (typeof(n) !== 'number') throw new Error('n must be number');
 	
 	const numAsString = n.toString();
 	return parseFloat(reverseWord(numAsString));
@@ -53,6 +57,7 @@ export const sumArrays = (arrs) => {
 
 export const arrShift = (arr) => {
 	if (arr === undefined) throw new Error('arr is required');
+	if (!Array.isArray(arr)) throw new Error('arr must be array');
 
 	[arr[0], arr[arr.length - 1]] = [arr[arr.length - 1], arr[0]];
 
@@ -62,6 +67,8 @@ export const arrShift = (arr) => {
 export const findNeedle = (haystack, searchTerm) => {
 	if (haystack === undefined) throw new Error('haystack is required');
 	if (searchTerm === undefined) throw new Error('searchTerm is required');
+	if (typeof(haystack) !== 'object') throw new Error('haystack must be object');
+	if (typeof(searchTerm) !== 'string') throw new Error('searchTerm must be string');
 	
 	const needles = findSentencesContaining(Object.values(haystack), searchTerm)
 
@@ -70,6 +77,7 @@ export const findNeedle = (haystack, searchTerm) => {
 
 export const getWordFrequencies = (str) => {
 	if (str === undefined) throw new Error('str is required');
+	if (typeof(str) !== 'string') throw new Error('str must be string');
 
 	const arrayOfWords = str.replace(/[^\w\s]/gi, "").toLowerCase().split(' ');
 
