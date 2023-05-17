@@ -18,7 +18,8 @@ const typeValueExamples = {
     number : 43,
     array : [ 1, 2, 3 ],
     object : { a : 1 },
-    boolean : false
+    boolean : false,
+    null: null
 };
 
 const allTypes = Object.keys(typeValueExamples); 
