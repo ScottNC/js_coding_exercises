@@ -9,6 +9,11 @@ import {
   getLongestSides,
 } from "../challenges/exercise004";
 
+import {
+  simpleTypeTest,
+  testMultipleArgs
+} from "./test_functions.js";
+
 describe("findSmallNums", () => {
   test("returns an array of numbers smaller than 1", () => {
     expect(findSmallNums([8, 1, 1.3, 0.9, 0.4, -1])).toEqual([0.9, 0.4, -1]);
@@ -20,6 +25,8 @@ describe("findSmallNums", () => {
   test("removes non numerical items", () => {
     expect(findSmallNums([8, 1, 1.3, 0.9, 0.4, -1, 'banana'])).toEqual([0.9, 0.4, -1]);
   });
+
+  simpleTypeTest(findSmallNums, 'array', 'nums');
 });
 
 describe("findNamesBeginningWith", () => {
@@ -44,6 +51,16 @@ describe("findNamesBeginningWith", () => {
     expect(findNamesBeginningWith(names, "d")).toEqual(["dave"]);
     expect(findNamesBeginningWith(names, "g")).toEqual(["Geoff"]);
   });
+
+  testMultipleArgs(findNamesBeginningWith, [{
+      name: 'names',
+      type: 'array'
+    },
+    {
+      name: 'char',
+      type: 'string'
+    }
+  ]);
 });
 
 describe("findVerbs", () => {
@@ -71,6 +88,8 @@ describe("findVerbs", () => {
     ];
     expect(findVerbs(words)).toEqual(["to eat", "to sneak", "to squeak"]);
   });
+  
+  simpleTypeTest(findVerbs, 'array', 'words');
 });
 
 describe("getIntegers", () => {
@@ -80,6 +99,8 @@ describe("getIntegers", () => {
     expect(getIntegers([])).toEqual([]);
     expect(getIntegers([4.9, 9.33, 12.4])).toEqual([]);
   });
+
+  simpleTypeTest(getIntegers, 'array', 'nums');
 });
 
 describe("getCities", () => {
@@ -124,6 +145,8 @@ describe("getCities", () => {
     ];
     expect(getCities(users)).toEqual(["MCR", "LVP", "LVP", "GLW"]);
   });
+
+  simpleTypeTest(getCities, 'object', 'users');
 });
 
 describe("getSquareRoots", () => {
@@ -131,6 +154,8 @@ describe("getSquareRoots", () => {
     const nums = [36, 77, 12, 355, 92, 5];
     expect(getSquareRoots(nums)).toEqual([6, 8.77, 3.46, 18.84, 9.59, 2.24]);
   });
+
+  simpleTypeTest(getSquareRoots, 'array', 'nums');
 });
 
 describe("findSentencesContaining", () => {
@@ -167,6 +192,8 @@ describe("findSentencesContaining", () => {
       "It's best to map these additional items such as a test framework, which is not needed for running your project, in a devDependencies object",
     ]);
   });
+
+  simpleTypeTest(findSentencesContaining, 'array', 'sentences');
 });
 
 describe("getLongestSides", () => {
@@ -189,4 +216,6 @@ describe("getLongestSides", () => {
     ];
     expect(getLongestSides(data2)).toEqual([7, 9, 6, 13, 12]);
   });
+
+  simpleTypeTest(getLongestSides, 'array', 'triangles');
 });
