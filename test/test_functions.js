@@ -1,4 +1,4 @@
-const testInputType = (func, type, argName, listArgs, argIsArray = true, argOrder = 0, testFunc = test)  => {
+const testInputType = (func, type, argName, listArgs, argIsArray, argOrder, testFunc)  => {
     testFunc("throws error for non " + type + " argument", () => {
         expect(() => {
             // we want to test if specific argument is undefined so we will fill the previous arguments with null
@@ -32,8 +32,8 @@ const typeToArguments = allTypes.reduce((allDifferentTypes, key) => {
 }, {});
 
 // easy to write test
-export const simpleTypeTest = (func, type, argName) => {
-    testInputType(func, type, argName, typeToArguments[type]);
+export const simpleTypeTest = (func, type, argName, testFunc = test) => {
+    testInputType(func, type, argName, typeToArguments[type], true, 0, testFunc);
 };
 
 export const testMultipleArgs = (func, allArgs, testFunc = test) => {
