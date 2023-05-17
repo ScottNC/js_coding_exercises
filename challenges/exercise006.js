@@ -113,4 +113,18 @@ export const createMatrix = (n, fill) => {
 export const areWeCovered = (staff, day) => {
 	if (staff === undefined) throw new Error('staff is required');
 	if (day === undefined) throw new Error('day is required');
+
+	if (typeof(day) !== 'string') throw new Error('day must be string');
+	if (!Array.isArray(staff)) throw new Error('staff must be array');
+
+	const staffAvail = staff.filter((person) => {
+		if (!Array.isArray(person.rota))
+			return false;
+			
+		const lowerCaseRota = person.rota.map(str => typeof(str) === 'string' && str.toLowerCase());
+
+		// if day isn't in array index will be -1 so function will return 0
+		return lowerCaseRota.indexOf(day.toLowerCase()) + 1;
+	});
+	return staffAvail.length >= 3;
 };
