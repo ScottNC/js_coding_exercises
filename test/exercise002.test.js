@@ -6,6 +6,10 @@ import {
 	hasMPostCode,
 } from '../challenges/exercise002';
 
+import {
+	simpleTypeTest
+  } from "./test_functions.js";
+
 describe('getFillings', () => {
 	test('returns the fillings of a sandwich', () => {
 		const sandwich = {
@@ -28,8 +32,10 @@ describe('getFillings', () => {
 			bread: 'Sourdough',
 			accompaniment: 'crisps',
 		};
-		expect(getFillings(sandwich)).toEqual(undefined);
+		expect(getFillings(sandwich)).toEqual([]);
 	});
+
+	simpleTypeTest(getFillings, 'object', 'sandwich');
 });
 
 describe('isFromManchester', () => {
@@ -77,6 +83,8 @@ describe('isFromManchester', () => {
 		};
 		expect(isFromManchester(person)).toBe(false);
 	});
+
+	simpleTypeTest(isFromManchester, 'object', 'person');
 });
 
 describe('getBusNumbers', () => {
@@ -106,6 +114,8 @@ describe('getBusNumbers', () => {
 	test('returns the correct number of buses for larger numbers of people', () => {
 		expect(getBusNumbers(43728)).toBe(1094);
 	});
+
+	simpleTypeTest(getBusNumbers, 'number', 'people');
 });
 
 describe('countSheep', () => {
@@ -143,6 +153,8 @@ describe('countSheep', () => {
 		const arr = ['dog', 'sheep', 4, 'sheep', 7];
 		expect(countSheep(arr)).toBe(2);
 	});
+
+	simpleTypeTest(countSheep, 'array', 'arr');
 });
 
 describe('hasMPostCode', () => {
@@ -234,4 +246,6 @@ describe('hasMPostCode', () => {
 		};
 		expect(hasMPostCode(person)).toBe(false);
 	});
+
+	simpleTypeTest(hasMPostCode, 'object', 'person');
 });

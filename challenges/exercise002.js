@@ -3,7 +3,7 @@ import {
 } from './common_functions.js';
 
 export function getFillings(sandwich) {
-	if (sandwich === undefined) throw new Error('ingredients is required');
+	if (sandwich === undefined) throw new Error('sandwich is required');
 	if (typeof(sandwich) !== 'object') throw new Error('sandwich must be object');
 	return sandwich.fillings;
 }
