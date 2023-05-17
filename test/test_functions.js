@@ -1,4 +1,4 @@
-const testInputType = (func, type, argName, listArgs, argIsArray, argOrder, testFunc)  => {
+const testInputType = (func, type, argName, listArgs, argIsArray, testFunc)  => {
     testFunc("throws error for non " + type + " argument", () => {
         listArgs.forEach( arg => {
             // argIsArray is useful for when the input argument is itself an array so it doesn't use the values in the array as different inputs
@@ -32,7 +32,7 @@ const typeToArguments = allTypes.reduce((allDifferentTypes, key) => {
 
 // easy to write test
 export const simpleTypeTest = (func, type, argName, testFunc = test) => {
-    testInputType(func, type, argName, typeToArguments[type], true, 0, testFunc);
+    testInputType(func, type, argName, typeToArguments[type], true, testFunc);
 };
 
 export const testMultipleArgs = (func, allArgs, testFunc = test) => {
@@ -46,7 +46,7 @@ export const testMultipleArgs = (func, allArgs, testFunc = test) => {
             typeToArguments[arg.type].forEach((argument) => {
                 let newArgs = [...argsTemplate];
                 newArgs[argOrder] = argument;
-                testInputType(func, arg.type, arg.name, [newArgs], false, argOrder, testFunc);
+                testInputType(func, arg.type, arg.name, [newArgs], false, testFunc);
             });
         }
     });
