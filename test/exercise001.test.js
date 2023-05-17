@@ -11,6 +11,11 @@ import {
   simpleFizzBuzz,
 } from "../challenges/exercise001";
 
+import {
+  simpleTypeTest,
+  testMultipleArgs
+} from "./test_functions.js";
+
 describe("capitalize", () => {
   test("returns a capitalized string", () => {
     expect(capitalize("hello")).toBe("Hello");
@@ -25,6 +30,8 @@ describe("capitalize", () => {
   test("does nothing if the string is empty", () => {
     expect(capitalize("")).toBe("");
   });
+
+  simpleTypeTest(capitalize, 'string', 'word');
 });
 
 describe("generateInitials", () => {
@@ -43,6 +50,17 @@ describe("generateInitials", () => {
   test("returns the initials of a surname", () => {
     expect(generateInitials("", "McLovin")).toBe("M");
   });
+
+  testMultipleArgs(generateInitials, [
+    {
+      name: 'firstName',
+      type: 'string'
+    },
+    {
+      name: 'lastName',
+      type: 'string'
+    }
+  ]);
 });
 
 describe("addVAT", () => {
@@ -61,6 +79,17 @@ describe("addVAT", () => {
   test("adds a VAT of 0% to a price of 25", () => {
     expect(addVAT(25, 0)).toBe(25);
   });
+
+  testMultipleArgs(addVAT, [
+    {
+      name: 'originalPrice',
+      type: 'number'
+    },
+    {
+      name: 'vatRate',
+      type: 'number'
+    }
+  ]);
 });
 
 describe("getSalePrice", () => {
@@ -79,6 +108,17 @@ describe("getSalePrice", () => {
   test("reduces a price of 50 by 0%", () => {
     expect(getSalePrice(50, 0)).toBe(50);
   });
+
+  testMultipleArgs(getSalePrice, [
+    {
+      name: 'originalPrice',
+      type: 'number'
+    },
+    {
+      name: 'reduction',
+      type: 'number'
+    }
+  ]);
 });
 
 describe("getMiddleCharacter", () => {
@@ -89,6 +129,8 @@ describe("getMiddleCharacter", () => {
   test("returns the middle 2 characters from a string of even length", () => {
     expect(getMiddleCharacter("help!!")).toBe("lp");
   });
+
+  simpleTypeTest(getMiddleCharacter, 'string', 'str');
 });
 
 describe("reverseWord", () => {
@@ -101,6 +143,8 @@ describe("reverseWord", () => {
       "?siht od ot tnaw neve uoy dluow yhw"
     );
   });
+
+  simpleTypeTest(reverseWord, 'string', 'word');
 });
 
 describe("reverseAllWords", () => {
@@ -113,6 +157,8 @@ describe("reverseAllWords", () => {
       reverseAllWords(["jest", "mocha", "rspec", "jasmine", "selenium"])
     ).toEqual(["tsej", "ahcom", "cepsr", "enimsaj", "muineles"]);
   });
+
+  simpleTypeTest(reverseAllWords, 'array', 'words');
 });
 
 describe("countLinuxUsers", () => {
@@ -151,6 +197,8 @@ describe("countLinuxUsers", () => {
     ];
     expect(countLinuxUsers(users)).toBe(3);
   });
+  
+  simpleTypeTest(countLinuxUsers, 'array', 'users');
 });
 
 describe("getMeanScore", () => {
@@ -170,6 +218,8 @@ describe("getMeanScore", () => {
   test("returns the mean of negative numbers", () => {
     expect(getMeanScore([-3, -5, 7, 9, -13])).toBe(-1);
   });
+
+  simpleTypeTest(getMeanScore, 'array', 'scores');
 });
 
 describe("simpleFizzBuzz", () => {
@@ -204,4 +254,6 @@ describe("simpleFizzBuzz", () => {
   test("returns 'fizzbuzz' if the large number is divisible by 3 and 5", () => {
     expect(simpleFizzBuzz(150)).toBe("fizzbuzz");
   });
+
+  simpleTypeTest(simpleFizzBuzz, 'number', 'n');
 });

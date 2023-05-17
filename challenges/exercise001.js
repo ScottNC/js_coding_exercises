@@ -25,7 +25,7 @@ export function generateInitials(firstName, lastName) {
 }
 
 export function addVAT(originalPrice, vatRate) {
-	if (originalPrice === undefined) throw new Error('originalPrice is requied');
+	if (originalPrice === undefined) throw new Error('originalPrice is required');
 	if (vatRate === undefined) throw new Error('vatRate is required');
 	if (typeof(originalPrice) !== 'number') throw new Error('originalPrice must be number');
 	if (typeof(vatRate) !== 'number') throw new Error('vatRate must be number');
