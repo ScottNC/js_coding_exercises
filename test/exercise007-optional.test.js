@@ -39,4 +39,8 @@ describe("createRange", () => {
     test("returns large array", () => {
         expect(createRange(12, 1862, 37)).toEqual(out);
     });
+
+    test("returns range with decimal values", () => {
+        expect(createRange(0, 1, 0.1)).toEqual([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+    });
 });
