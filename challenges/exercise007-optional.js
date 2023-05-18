@@ -35,13 +35,16 @@ export const sumDigits = (n) => {
  * @param {Number} end
  * @param {Number} step
  */
-export const createRange = (start, end, step) => {
-	if (start === undefined) throw new Error('start is required');
-	if (end === undefined) throw new Error('end is required');
-	if (step === undefined)
-		console.log(
-			"FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-		);
+export const createRange = (start, end, step = 1) => {
+	if (typeof(start) !== 'number') throw new Error('start must be number');
+	if (typeof(end) !== 'number') throw new Error('end must be number');
+	if (typeof(step) !== 'number') throw new Error('step must be number');
+
+	if ((end - start) % step) throw new Error('start and end difference must be divisible by step');
+
+	const range = Array.from({ length: (end - start) / step + 1 });
+
+	return range.map((_, idx) => start + idx * step);
 };
 
 /**
