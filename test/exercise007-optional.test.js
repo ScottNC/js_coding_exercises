@@ -2,10 +2,10 @@ import {
     sumDigits
 } from "../challenges/exercise007-optional";
 
-// import {
-//     simpleTypeTest,
-//     testMultipleArgs
-// } from "./test_functions.js";
+import {
+    simpleTypeTest,
+    // testMultipleArgs
+} from "./test_functions.js";
 
 
 describe("sumDigits", () => {
@@ -19,4 +19,6 @@ describe("sumDigits", () => {
     test("returns sum of digits for decimal numbers", () => {
         expect(sumDigits(12.34)).toBe(10);
     });
+
+    simpleTypeTest(sumDigits, 'number', 'n');
 });
