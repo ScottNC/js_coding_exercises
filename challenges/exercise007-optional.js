@@ -9,7 +9,11 @@
 export const sumDigits = (n) => {
 	if (typeof(n) !== 'number') throw new Error('n must be number');
 
-	const count = n.toString().length;
+	// changes value of n if decimal (i.e 3.14 will be 314 as sum of digits will be the same)
+	const numAsString = n.toString().replace('.','');
+	n = parseInt(numAsString);
+
+	const count = numAsString.length;
 	let sum = 0;
 	let divisor = 10;
 
