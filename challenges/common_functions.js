@@ -23,6 +23,6 @@ export function findSum(nums) {
 export function getDecPlaces(num) {
 	// Finds the amount of decimal places after any number
 	const decimalString = num.toString();
-	const decimalIndex = decimalString.indexOf('.');
-	return (decimalIndex + 1) && decimalString.length - decimalIndex - 1;
+	const decimalIndex = decimalString.indexOf('.') + 1;
+	return decimalIndex && decimalString.length - decimalIndex;
 }
