@@ -53,10 +53,7 @@ export const createRange = (start, end, step = 1) => {
 	const newStart = Math.round(start * scaleFactor);
 	const newStep = Math.round(step * scaleFactor);
 
-	return range.map((_, idx) => {
-		console.log(newStart + idx * newStep)
-		return (newStart + idx * newStep)/scaleFactor;
-	});
+	return range.map((_, idx) => (newStart + idx * newStep)/scaleFactor);
 };
 
 /**
