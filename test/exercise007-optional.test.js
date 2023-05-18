@@ -72,6 +72,10 @@ describe("createRange", () => {
         expect(() =>  createRange(1, -10, 1)).toThrow("step must be in same direction as start -> end");
     });
 
+    test("errors if end can't be included in array", () => {
+        expect(() =>  createRange(3, 10, 2)).toThrow("start and end difference must be divisible by step");
+    });
+
     testMultipleArgs(createRange, [
         {
             name: 'start',
