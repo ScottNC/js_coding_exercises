@@ -1,6 +1,6 @@
-/* 
-	👉 These exercises are a great extra challenge to push your JavaScript skills. Go for it!
-*/
+import {
+	getDecPlaces
+} from './common_functions.js';
 
 /**
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
@@ -40,11 +40,23 @@ export const createRange = (start, end, step = 1) => {
 	if (typeof(end) !== 'number') throw new Error('end must be number');
 	if (typeof(step) !== 'number') throw new Error('step must be number');
 
-	if ((end - start) % step) throw new Error('start and end difference must be divisible by step');
+	if (((end - start) / step) % 1) throw new Error('start and end difference must be divisible by step');
 
 	const range = Array.from({ length: (end - start) / step + 1 });
 
-	return range.map((_, idx) => start + idx * step);
+	// using a scale factor handles floating point logic better
+	// so if we have a variable 3.14 we multiply all numbers by 100, add the numbers, divide by 100
+	const decPlaces = [start, end, step].map(item => getDecPlaces(item));
+	const maxDecPlace = Math.max(...decPlaces);
+	const scaleFactor = 10**maxDecPlace;
+
+	const newStart = Math.round(start * scaleFactor);
+	const newStep = Math.round(step * scaleFactor);
+
+	return range.map((_, idx) => {
+		console.log(newStart + idx * newStep)
+		return (newStart + idx * newStep)/scaleFactor;
+	});
 };
 
 /**

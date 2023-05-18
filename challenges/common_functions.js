@@ -19,3 +19,10 @@ export function findSum(nums) {
 
     return sum;
 }
+
+export function getDecPlaces(num) {
+	// Finds the amount of decimal places after any number
+	const decimalString = num.toString();
+	const decimalIndex = decimalString.indexOf('.');
+	return (decimalIndex + 1) && decimalString.length - decimalIndex - 1;
+}
