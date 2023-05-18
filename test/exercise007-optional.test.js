@@ -55,6 +55,23 @@ describe("createRange", () => {
         expect(createRange(0, 1.3918681863, 0.27837363726)).toEqual(out3);
     });
 
+    test("step input is 1 if none is given", () => {
+        expect(createRange(1, 10)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    });
+
+    test("returns range with negative numbers", () => {
+        expect(createRange(-1, -10, -1)).toEqual([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]);
+    });
+
+    test("returns array of one value if start and end equal", () => {
+        expect(createRange(5, 5)).toEqual([5]);
+    });
+
+    test("errors if start cannot reach end", () => {
+        expect(() =>  createRange(-1, 10, -1)).toThrow("step must be in same direction as start -> end");
+        expect(() =>  createRange(1, -10, 1)).toThrow("step must be in same direction as start -> end");
+    });
+
     testMultipleArgs(createRange, [
         {
             name: 'start',
