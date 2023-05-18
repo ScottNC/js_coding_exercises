@@ -5,7 +5,7 @@ import {
 
 import {
     simpleTypeTest,
-    // testMultipleArgs
+    testMultipleArgs
 } from "./test_functions.js";
 
 
@@ -54,4 +54,15 @@ describe("createRange", () => {
     test("returns range with numbers with a large amount of decimal places", () => {
         expect(createRange(0, 1.3918681863, 0.27837363726)).toEqual(out3);
     });
+
+    testMultipleArgs(createRange, [
+        {
+            name: 'start',
+            type: 'number'
+        },
+        {
+            name: 'end',
+            type: 'number'
+        }
+    ]);
 });
