@@ -1,5 +1,6 @@
 import {
-    sumDigits
+    sumDigits,
+    createRange
 } from "../challenges/exercise007-optional";
 
 import {
