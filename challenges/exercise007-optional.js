@@ -40,9 +40,11 @@ export const createRange = (start, end, step = 1) => {
 	if (typeof(end) !== 'number') throw new Error('end must be number');
 	if (typeof(step) !== 'number') throw new Error('step must be number');
 
-	if (((end - start) / step) % 1) throw new Error('start and end difference must be divisible by step');
+	const seqLen = (end - start) / step;
+	if (seqLen < 0) throw new Error('step must be in same direction as start -> end');
+	if (seqLen % 1) throw new Error('start and end difference must be divisible by step');
 
-	const range = Array.from({ length: (end - start) / step + 1 });
+	const range = Array.from({ length: seqLen + 1 });
 
 	// using a scale factor handles floating point logic better
 	// so if we have a variable 3.14 we multiply all numbers by 100, add the numbers, divide by 100
