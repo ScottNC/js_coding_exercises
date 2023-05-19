@@ -174,7 +174,6 @@ describe("checkIngredients", () => {
   }, {
     name: 'ingredient',
     type: 'string',
-    skip: true
   }]);
 });
 

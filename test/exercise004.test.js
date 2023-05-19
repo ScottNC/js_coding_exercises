@@ -146,7 +146,7 @@ describe("getCities", () => {
     expect(getCities(users)).toEqual(["MCR", "LVP", "LVP", "GLW"]);
   });
 
-  simpleTypeTest(getCities, 'object', 'users');
+  simpleTypeTest(getCities, 'array', 'users');
 });
 
 describe("getSquareRoots", () => {
