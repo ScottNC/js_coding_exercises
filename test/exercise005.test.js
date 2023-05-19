@@ -8,6 +8,11 @@ import {
   getWordFrequencies,
 } from "../challenges/exercise005";
 
+import {
+  simpleTypeTest,
+  testMultipleArgs
+} from "./test_functions.js";
+
 describe("findNextNumber", () => {
   test("returns the next number after the given number in the array", () => {
     expect(findNextNumber([5, 3, 7, 8, 1, 10], 7)).toBe(8);
@@ -26,6 +31,16 @@ describe("findNextNumber", () => {
   test("if the number is found in the final index position of the array, returns null", () => {
     expect(findNextNumber([5, 3, 7, 8, 1, 3, 10], 10)).toBe(null);
   });
+
+  testMultipleArgs(findNextNumber, [{
+      name: 'nums',
+      type: 'array'
+    },
+    {
+      name: 'n',
+      type: 'number'
+    }
+  ]);
 });
 
 describe("count1sand0s", () => {
@@ -50,6 +65,8 @@ describe("count1sand0s", () => {
       0: 1,
     });
   });
+
+  simpleTypeTest(count1sand0s, 'string', 'str');
 });
 
 describe("reverseNumber", () => {
@@ -63,6 +80,8 @@ describe("reverseNumber", () => {
   test("reverses the digits of a number for a decimal number", () => {
     expect(reverseNumber(3.14)).toBe(41.3);
   });
+
+  simpleTypeTest(reverseNumber, 'number', 'n');
 });
 
 describe("sumArrays", () => {
@@ -70,6 +89,8 @@ describe("sumArrays", () => {
     const arrs = [[1, 2, 3], [6, 3, 1], [1], [9, 10], [3, 5]];
     expect(sumArrays(arrs)).toBe(44);
   });
+
+  simpleTypeTest(sumArrays, 'array', 'arrs');
 });
 
 describe("arrShift", () => {
@@ -83,6 +104,8 @@ describe("arrShift", () => {
     expect(arrShift([1])).toEqual([1]);
     expect(arrShift([])).toEqual([]);
   });
+
+  simpleTypeTest(arrShift, 'array', 'arr');
 });
 
 describe("findNeedle", () => {
@@ -141,6 +164,16 @@ describe("findNeedle", () => {
     expect(findNeedle(obj1, "linnmon")).toBe(true);
     expect(findNeedle(obj1, "Liverpool")).toBe(false);
   });
+
+  testMultipleArgs(findNeedle, [{
+    name: 'haystack',
+    type: 'object'
+  },
+  {
+    name: 'searchTerm',
+    type: 'string'
+  }
+]);
 });
 
 describe("getWordFrequencies", () => {
@@ -182,4 +215,6 @@ describe("getWordFrequencies", () => {
       here: 1,
     });
   });
+
+  simpleTypeTest(getWordFrequencies, 'string', 'str');
 });
