@@ -146,11 +146,11 @@ describe("getScreentimeAlertList", () => {
         },
     ];
 
-    test("returns 1 user who has spent over 100 minutes on screen", () => {
+    test("returns 1 user who has spent over 100 minutes on screen with missing usage", () => {
         expect(getScreentimeAlertList(input2, "2019-05-04")).toEqual(["beth_1234"]);
     });
 
-    test("returns 1 user who has spent over 100 minutes on screen", () => {
+    test("returns 1 user who has spent over 100 minutes on screen with missing usage", () => {
         expect(getScreentimeAlertList(input2, "2019-05-03")).toEqual([]);
     });
 });
