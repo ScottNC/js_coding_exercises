@@ -89,7 +89,7 @@ describe("createRange", () => {
     ]);
 });
 
-describe.only("getScreentimeAlertList", () => {
+describe("getScreentimeAlertList", () => {
 
     const input = [
         {
