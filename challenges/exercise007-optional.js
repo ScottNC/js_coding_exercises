@@ -90,7 +90,7 @@ export const createRange = (start, end, step = 1) => {
 export const getScreentimeAlertList = (users, date) => {
 	if (users === undefined) throw new Error('users is required');
 	if (date === undefined) throw new Error('date is required');
-	if (typeof(users) !== 'object' || Array.isArray(users)) throw new Error('person must be object');
+	if (!Array.isArray(users)) throw new Error('users must be array');
 	if (typeof(date) !== 'string') throw new Error('date must be string');
 
 	const userTimeMap = users.map(user => {
@@ -162,27 +162,36 @@ export const findWinner = (board) => {
 	if (board === undefined) throw new Error('board is required');
 	if (!Array.isArray(board)) throw new Error('board must be array');
 
-	if (board.length !== 3) throw new Error('board must 3x3 matrix');
-	else {
-		board.forEach(row => {
-			if (row.length !== 3) throw new Error('board must 3x3 matrix');
-		})
-	}
+	const boardLength = board.length;
+
+	if (!boardLength) throw new Error('board cannot be empty');
+
+	board.forEach(row => {
+		if (row.length !== boardLength) throw new Error('board must be nxn matrix');
+	});
 
 	const findWinnerRow = (row) => {
 		['0', 'X'].forEach(symbol => {
-			const xWin = row.filter(char => char === symbol);
-			if (xWin.length === 3) winner += symbol;
+			const symbolPlays = row.filter(char => char === symbol);
+			if (symbolPlays.length === boardLength && !winner.includes(symbol)) winner += symbol;
 		});
 	};
 
 	let winner = '';
 
-	const inverseBoard = board.map((_, idx) => [board[0][idx], board[1][idx], board[2][idx]]);
+	const buildArray = Array.from({ length: boardLength }, (_, idx) => idx);
+	const buildArrayRev = Array.from({ length: boardLength }, (_, idx) => boardLength - idx - 1);
 
-	const diagonals = [1, -1].map(item =>[board[1 + item][0], board[1][1], board[1 - item][2]]);
+	const verticalRows = buildArray.map(row =>{
+		return buildArray.map(column => board[column][row]);
+	});
 
-	[...board, ...inverseBoard, ...diagonals].forEach(findWinnerRow);
+	const diagonalRows = [buildArray, buildArrayRev].map(array => {
+		return buildArray.map(column => board[column][array[column]]);
+	});
 
+	[...board, ...verticalRows, ...diagonalRows].forEach(findWinnerRow);
+
+	// returns null if either nobody wins or they both win
 	return winner.length - 1 ? null : winner;
 };
