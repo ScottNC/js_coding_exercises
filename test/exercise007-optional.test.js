@@ -85,6 +85,11 @@ describe("createRange", () => {
         {
             name: 'end',
             type: 'number'
+        },
+        {
+            name: 'step',
+            type: 'number',
+            skipUndefined: true
         }
     ]);
 });
