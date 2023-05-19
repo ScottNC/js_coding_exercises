@@ -193,4 +193,24 @@ describe("hexToRGB", () => {
         expect(hexToRGB("#000000")).toEqual("rgb(0,0,0)");
         expect(hexToRGB("#1A2B3C")).toEqual("rgb(26,43,60)");
     });
+
+    test("returns RGB value from hexadecimal input with lowercase letters", () => {
+        expect(hexToRGB("#ff1133")).toEqual("rgb(255,17,51)");
+        expect(hexToRGB("#1a2b3c")).toEqual("rgb(26,43,60)");
+    });
+
+    test("errors if string is too long or short", () => {
+        expect(() =>  hexToRGB("#123")).toThrow(Error);
+        expect(() =>  hexToRGB("#AABBCCDD")).toThrow(Error);
+    });
+
+    test("errors if string contains characters outside hexadecimal characters", () => {
+        expect(() =>  hexToRGB("#FFQ2AB")).toThrow(Error);
+    });
+
+    test("errors if # is ignored", () => {
+        expect(() =>  hexToRGB("FFF1133")).toThrow(Error);
+    });
+
+    simpleTypeTest(hexToRGB, 'string', 'hexStr');
 });
