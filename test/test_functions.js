@@ -1,46 +1,44 @@
-const testInputType = (func, type, argName, listArgs, argIsArray, testFunc)  => {
-    testFunc("throws error for non " + type + " argument", () => {
-        listArgs.forEach( arg => {
-            // argIsArray is useful for when the input argument is itself an array so it doesn't use the values in the array as different inputs
-            arg = argIsArray? [arg] : arg;
-            expect(() =>  func(...arg)).toThrow(Error)
-        });
-    });
-}
-
 const typeValueExamples = {
     string : 'hello',
     number : 43,
     array : [ 1, 2, 3 ],
     object : { a : 1 },
     boolean : false,
-    null: null
+    null: null,
+    undefined: undefined
 };
 
-const allTypes = Object.keys(typeValueExamples); 
+const findWrongInputType = (argument) => {
+    return Object.entries(typeValueExamples).find(([, val]) => val === argument)[0];
+};
 
-// this creates a map of what input type we're testing so it tests all the other input types
-// for example {string: [43, [1,2,3] ...]}
-const typeToArguments = allTypes.reduce((allDifferentTypes, key) => {
-    const typeObject = ['array', 'null']
-    // typeof(array) will output object so we want to avoid including arrays when testing objects
-    allDifferentTypes[key] = allTypes.filter((key2) => key2 !== key && !(key === 'object' && typeObject.indexOf(key2) + 1));
-    allDifferentTypes[key] = allDifferentTypes[key].map((type => typeValueExamples[type]))
-    return allDifferentTypes;
-}, {});
-
-// easy to write test
-export const simpleTypeTest = (func, type, argName, testFunc = test) => {
-
-    const inputTypes = Object.entries(typeValueExamples).reduce((accumulator, [key, value]) => {
+const getOtherTypes = (type) => {
+    return Object.entries(typeValueExamples).reduce((accumulator, [key, value]) => {
         if (key !== type) 
             accumulator[accumulator.length] = value;
         return accumulator;
     }, []);
-
-    testInputType(func, type, argName, inputTypes, true, testFunc);
 };
 
+const testInputType = (func, type, argName, listArgs, argIsArray, wrongInputType, testFunc)  => {
+    listArgs.forEach( arg => {
+        if (argIsArray) wrongInputType = findWrongInputType(arg);
+
+        testFunc("throws error for non " + type + " argument for input variable " + argName + " when inputting " + wrongInputType, () => {
+            // argIsArray is useful for when the input argument is itself an array so it doesn't use the values in the array as different inputs
+            arg = argIsArray? [arg] : arg;
+            expect(() =>  func(...arg)).toThrow(Error)
+        });
+    });
+};
+
+// simple test to test if all other input types will return errors for functions with one input parameter
+export const simpleTypeTest = (func, type, argName, testFunc = test) => {
+    const otherTypes = getOtherTypes(type);
+    testInputType(func, type, argName, otherTypes, true, null, testFunc);
+};
+
+// similar to simpleTypeTest but will accomdate functions with multiple parameters
 export const testMultipleArgs = (func, allArgs, testFunc = test) => {
 
     // The template will allow the code to pass in the arguments not being tested correctly
@@ -49,10 +47,19 @@ export const testMultipleArgs = (func, allArgs, testFunc = test) => {
     allArgs.forEach((arg, argOrder) => {
         // if argument can be any variable we can choose to skip the test but still have an input
         if (!arg.skip) {
-            typeToArguments[arg.type].forEach((argument) => {
-                let newArgs = [...argsTemplate];
-                newArgs[argOrder] = argument;
-                testInputType(func, arg.type, arg.name, [newArgs], false, testFunc);
+
+            const otherTypes = getOtherTypes(arg.type);
+
+            otherTypes.forEach((argument) => {
+
+                const wrongInputType = findWrongInputType(argument);
+
+                // skipUndefined is used when an input parameter does not require an input and one is preset
+                if (argument === undefined && arg.skipUndefined) {
+                    let newArgs = [...argsTemplate];
+                    newArgs[argOrder] = argument;
+                    testInputType(func, arg.type, arg.name, [newArgs], false, wrongInputType, testFunc);
+                }
             });
         }
     });
