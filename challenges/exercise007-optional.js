@@ -18,7 +18,7 @@ export const sumDigits = (n) => {
 	let divisor = 10;
 
 	while (divisor <= 10 ** count) {
-		let remainder = n % divisor;
+		const remainder = n % divisor;
 		n -= remainder;
 		sum += 10 * remainder / divisor;
 		divisor *= 10;

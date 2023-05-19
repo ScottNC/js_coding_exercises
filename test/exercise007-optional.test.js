@@ -139,7 +139,7 @@ describe("getScreentimeAlertList", () => {
             name: "Beth Smith",
             screenTime: [
                 { date: "2019-05-01", usage: { twitter: 2, instagram: 3, facebook: 4} },
-                { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
+                {  usage: { twitter: 56, instagram: 40, facebook: 31} },
                 { date: "2019-05-03" },
                 { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
             ]
@@ -150,7 +150,23 @@ describe("getScreentimeAlertList", () => {
         expect(getScreentimeAlertList(input2, "2019-05-04")).toEqual(["beth_1234"]);
     });
 
-    test("returns 1 user who has spent over 100 minutes on screen with missing usage", () => {
+    test("returns no users who has spent over 100 minutes on screen with missing usage", () => {
         expect(getScreentimeAlertList(input2, "2019-05-03")).toEqual([]);
+    });
+
+    test("returns no users who has spent over 100 minutes on screen with missing date", () => {
+        expect(getScreentimeAlertList(input2, "2019-05-02")).toEqual([]);
+    });
+
+    const input3 = [
+        {
+            username: "beth_1234",
+            name: "Beth Smith",
+            screenTime: []
+        },
+    ];
+
+    test("returns no user with empty screenTime", () => {
+        expect(getScreentimeAlertList(input3, "2019-05-03")).toEqual([]);
     });
 });
