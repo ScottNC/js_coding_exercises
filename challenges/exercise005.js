@@ -49,6 +49,7 @@ export const reverseNumber = (n) => {
 
 export const sumArrays = (arrs) => {
 	if (arrs === undefined) throw new Error('arrs is required');
+	if (!Array.isArray(arrs)) throw new Error('arr must be array');
 	
 	// converts nested array into single array
 	const arr = [].concat(...arrs);
@@ -67,7 +68,7 @@ export const arrShift = (arr) => {
 export const findNeedle = (haystack, searchTerm) => {
 	if (haystack === undefined) throw new Error('haystack is required');
 	if (searchTerm === undefined) throw new Error('searchTerm is required');
-	if (typeof(haystack) !== 'object') throw new Error('haystack must be object');
+	if (typeof(haystack) !== 'object' || Array.isArray(haystack)) throw new Error('haystack must be object');
 	if (typeof(searchTerm) !== 'string') throw new Error('searchTerm must be string');
 	
 	const needles = findSentencesContaining(Object.values(haystack), searchTerm)
