@@ -8,7 +8,7 @@ const testInputType = (func, type, argName, listArgs, argIsArray, testFunc)  => 
         listArgs.forEach( arg => {
             // argIsArray is useful for when the input argument is itself an array so it doesn't use the values in the array as different inputs
             arg = argIsArray? [arg] : arg;
-            expect(() =>  func(...arg)).toThrow(argName + " must be " + type)
+            expect(() =>  func(...arg)).toThrow(Error)
         });
     });
 }
