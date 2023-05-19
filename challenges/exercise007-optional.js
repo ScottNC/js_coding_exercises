@@ -160,4 +160,29 @@ export const hexToRGB = (hexStr) => {
  */
 export const findWinner = (board) => {
 	if (board === undefined) throw new Error('board is required');
+	if (!Array.isArray(board)) throw new Error('board must be array');
+
+	if (board.length !== 3) throw new Error('board must 3x3 matrix');
+	else {
+		board.forEach(row => {
+			if (row.length !== 3) throw new Error('board must 3x3 matrix');
+		})
+	}
+
+	const findWinnerRow = (row) => {
+		['0', 'X'].forEach(symbol => {
+			const xWin = row.filter(char => char === symbol);
+			if (xWin.length === 3) winner += symbol;
+		});
+	};
+
+	let winner = '';
+
+	const inverseBoard = board.map((_, idx) => [board[0][idx], board[1][idx], board[2][idx]]);
+
+	const diagonals = [1, -1].map(item =>[board[1 + item][0], board[1][1], board[1 - item][2]]);
+
+	[...board, ...inverseBoard, ...diagonals].forEach(findWinnerRow);
+
+	return winner.length - 1 ? null : winner;
 };
