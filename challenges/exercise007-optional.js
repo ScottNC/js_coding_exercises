@@ -48,7 +48,7 @@ export const createRange = (start, end, step = 1) => {
 
 	// using a scale factor handles floating point logic better
 	// so if we have a variable 3.14 we multiply all numbers by 100, add the numbers, divide by 100
-	const decPlaces = [start, end, step].map(item => getDecPlaces(item));
+	const decPlaces = [start, end, step].map(getDecPlaces);
 	const maxDecPlace = Math.max(...decPlaces);
 	const scaleFactor = 10**maxDecPlace;
 
