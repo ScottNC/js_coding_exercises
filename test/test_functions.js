@@ -55,7 +55,7 @@ export const testMultipleArgs = (func, allArgs, testFunc = test) => {
                 const wrongInputType = findWrongInputType(argument);
 
                 // skipUndefined is used when an input parameter does not require an input and one is preset
-                if (argument === undefined && arg.skipUndefined) {
+                if (!(wrongInputType === 'undefined' && arg.skipUndefined)) {
                     let newArgs = [...argsTemplate];
                     newArgs[argOrder] = argument;
                     testInputType(func, arg.type, arg.name, [newArgs], false, wrongInputType, testFunc);
