@@ -330,6 +330,10 @@ describe("findWinner", () => {
         expect(() =>  findWinner(wrongSize1)).toThrow('board must be nxn matrix');
         expect(() =>  findWinner(wrongSize2)).toThrow('board must be nxn matrix');
     });
+    
+    test("0x0 to error", () => {
+        expect(() =>  findWinner([])).toThrow('board cannot be empty');
+    });
 
     test("1x1 to pass", () => {
         expect(findWinner(oneByOne)).toEqual("0");
