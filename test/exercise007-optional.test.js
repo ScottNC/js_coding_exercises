@@ -123,7 +123,7 @@ describe("getScreentimeAlertList", () => {
     });
 
     test("returns 2 users who has spent over 100 minutes on screen", () => {
-        const res = getScreentimeAlertList(input, "2019-05-04");
+        const res = getScreentimeAlertList(input, "2019-05-02");
         expect(res.length).toBe(2);
         expect(res).toContain("beth_1234");
         expect(res).toContain("sam_j_1989")
