@@ -9,7 +9,7 @@ export function capitalize(word) {
 	if (typeof(word) !== 'string') throw new Error('word must be string');
 
 	// Finds first letter and converts to upper case and adds letter to rest of word
-	let initial = nthInitialCapital(word);
+	const initial = nthInitialCapital(word);
 	return initial + word.slice(1);
 }
 
@@ -46,7 +46,7 @@ export function getMiddleCharacter(str) {
 	if (str === undefined) throw new Error('str is required');
 	if (typeof(str) !== 'string') throw new Error('str must be string');
 		
-	let len = str.length;
+	const len = str.length;
 
 	if (len % 2) // if odd
 		return str[(len - 1)/2];
@@ -77,7 +77,7 @@ export function countLinuxUsers(users) {
 	if (users === undefined) throw new Error('users is required');
 	if (!Array.isArray(users)) throw new Error('users must be array');
 
-	let linuxUsers = users.filter(user => {
+	const linuxUsers = users.filter(user => {
 		return user.type === 'Linux'
 	});
 

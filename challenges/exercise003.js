@@ -39,7 +39,7 @@ export function getTotalSubjects(people) {
 	if (people === undefined) throw new Error('people is required');
 	if (!Array.isArray(people)) throw new Error('people must be array');
 	
-	let subjects = concatItems(people, 'subjects', item => typeof(item) === 'string')
+	const subjects = concatItems(people, 'subjects', item => typeof(item) === 'string')
 	return subjects.length;
 }
 
@@ -50,7 +50,7 @@ export function checkIngredients(menu, ingredient) {
 	if (typeof(ingredient) !== 'string') throw new Error('ingredient must be string');
 
 	// Creates array of all times ingredient is used
-	let relevantIngredients = concatItems(menu, 'ingredients', item => item === ingredient);
+	const relevantIngredients = concatItems(menu, 'ingredients', item => item === ingredient);
 	// returns true if ingredient is used at all
 	return !!relevantIngredients.length;
 }

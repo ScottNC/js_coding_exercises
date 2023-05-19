@@ -27,7 +27,7 @@ export function countSheep(arr) {
 	if (arr === undefined) throw new Error('arr is required');
 	if (!Array.isArray(arr)) throw new Error('arr must be array');
 
-	let sheep = arr.filter(animal => {
+	const sheep = arr.filter(animal => {
 		return animal === 'sheep'
 	});
 
