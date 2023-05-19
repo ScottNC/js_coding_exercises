@@ -2,7 +2,8 @@ import {
     sumDigits,
     createRange,
     getScreentimeAlertList,
-    hexToRGB
+    hexToRGB,
+    findWinner
 } from "../challenges/exercise007-optional";
 
 import {
@@ -213,4 +214,65 @@ describe("hexToRGB", () => {
     });
 
     simpleTypeTest(hexToRGB, 'string', 'hexStr');
+});
+
+describe("findWinner", () => {
+
+    const vertWin = [
+        ["X", "0", null],
+        ["X", null, "0"],
+        ["X", null, "0"]
+    ];
+
+    const horizonWin = [
+        ["X", "X", null],
+        ["X", null, "X"],
+        ["0", "0", "0"]
+    ];
+
+    const diagWin = [
+        ["X", "X", null],
+        [null, "X", "0"],
+        ["0", "0", "X"]
+    ];
+
+    const noWin = [
+        ["X", "X", null],
+        [null, "X", "0"],
+        ["0", "0", null]
+    ];
+
+    const wrongSize1 = [
+        ["X", "X", null],
+        [null, "X", "0"]
+    ];
+
+    const wrongSize2 = [
+        ["X", "X", null],
+        [null, "X", "0"],
+        ["0", "0"]
+    ];
+
+    test("wins vertically", () => {
+        expect(findWinner(vertWin)).toEqual("X");
+    });
+
+    test("wins horizontally", () => {
+        expect(findWinner(horizonWin)).toEqual("0");
+    });
+
+    test("wins diagonally", () => {
+        expect(findWinner(diagWin)).toEqual("X");
+    });
+
+    test("nobody wins", () => {
+        expect(findWinner(noWin)).toBeNull();
+    });
+
+    test("throw error if matrix is wrong size", () => {
+        expect(() =>  findWinner(wrongSize1)).toThrow('board must 3x3 matrix');
+        expect(() =>  findWinner(wrongSize2)).toThrow('board must 3x3 matrix');
+    });
+
+    simpleTypeTest(findWinner, 'array', 'board');
 });
