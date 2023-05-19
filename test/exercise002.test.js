@@ -247,5 +247,13 @@ describe('hasMPostCode', () => {
 		expect(hasMPostCode(person)).toBe(false);
 	});
 
+	test('returns false if there is no address', () => {
+		const person = {
+			name: 'Shrek',
+			age: 32
+		};
+		expect(hasMPostCode(person)).toBe(false);
+	});
+
 	simpleTypeTest(hasMPostCode, 'object', 'person');
 });

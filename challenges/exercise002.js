@@ -38,7 +38,7 @@ export function hasMPostCode(person) {
 	if (!person) throw new Error('person is required');
 	if (typeof(person) !== 'object' || Array.isArray(person)) throw new Error('person must be object');
 
-	if (person && person.address && typeof(person.address.postCode) === 'string') {
+	if (typeof(person.address?.postCode) === 'string') {
 	
 		// determines if first letter of postcode is M
 		if (nthInitialCapital(person.address.postCode) !== 'M')
