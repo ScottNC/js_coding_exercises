@@ -11,6 +11,8 @@
  * @returns {Number}
  */
 export const sumMultiples = (arr) => {
+	if (arr === undefined) throw new Error('arr is required');
+
 	if (!Array.isArray(arr)) throw new Error('arr must be array');
 
 	return arr.reduce((sum, num) => {
@@ -26,6 +28,7 @@ export const sumMultiples = (arr) => {
  * @returns {Boolean}
  */
 export const isValidDNA = (str) => {
+	if (str === undefined) throw new Error('str is required');
 	if (typeof(str) !== 'string') throw new Error('str must be string');
 
 	return str === str.replace(/[^cgta]/gi, '');
@@ -37,7 +40,7 @@ export const isValidDNA = (str) => {
  * @returns {String}
  */
 export const getComplementaryDNA = (str) => {
-	// isValidDNA already tests if str is a string
+	// isValidDNA already tests if str is undefined
 	if (!isValidDNA(str)) throw new Error('str must only contain letters C, T, A and G');
 
 	const pairs = { A: 'T', C: 'G', T: 'A', G: 'C' };
@@ -52,6 +55,7 @@ export const getComplementaryDNA = (str) => {
  * @returns {Boolean}
  */
 export const isItPrime = (n) => {
+	if (n === undefined) throw new Error('n is required');
 	if (typeof(n) !== 'number') throw new Error('n must be number');
 
 	if (n === 2 || n === 3) return true;
@@ -84,6 +88,7 @@ export const isItPrime = (n) => {
  * @returns {Array}
  */
 export const createMatrix = (n, fill) => {
+	if (n === undefined) throw new Error('n is required');
 	if (fill === undefined) throw new Error('fill is required');
 	if (typeof(n) !== 'number') throw new Error('n must be number');
 
@@ -106,6 +111,9 @@ export const createMatrix = (n, fill) => {
  * @returns {Boolean}
  */
 export const areWeCovered = (staff, day) => {
+	if (staff === undefined) throw new Error('staff is required');
+	if (day === undefined) throw new Error('day is required');
+
 	if (typeof(day) !== 'string') throw new Error('day must be string');
 	if (!Array.isArray(staff)) throw new Error('staff must be array');
 

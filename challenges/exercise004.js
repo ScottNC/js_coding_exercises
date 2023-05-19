@@ -4,6 +4,7 @@ import {
 } from './common_functions.js';
 
 export function findSmallNums(nums) {
+	if (!nums) throw new Error('nums is required');
 	if (!Array.isArray(nums)) throw new Error('nums must be array');
 	
 	return nums.filter(num => {
@@ -12,6 +13,8 @@ export function findSmallNums(nums) {
 }
 
 export function findNamesBeginningWith(names, char) {
+	if (!names) throw new Error('names is required');
+	if (!char) throw new Error('char is required');
 	if (!Array.isArray(names)) throw new Error('names must be array');
 	if (typeof(char) !== 'string') throw new Error('char must be string');
 	
@@ -21,6 +24,7 @@ export function findNamesBeginningWith(names, char) {
 }
 
 export function findVerbs(words) {
+	if (!words) throw new Error('words is required');
 	if (!Array.isArray(words)) throw new Error('words must be array');
 	
 	return words.filter(word => {
@@ -29,6 +33,7 @@ export function findVerbs(words) {
 }
 
 export function getIntegers(nums) {
+	if (!nums) throw new Error('nums is required');
 	if (!Array.isArray(nums)) throw new Error('nums must be array');
 	
 	return nums.filter(num => {
@@ -37,6 +42,7 @@ export function getIntegers(nums) {
 }
 
 export function getCities(users) {
+	if (!users) throw new Error('users is required');
 	if (!Array.isArray(users)) throw new Error('users must be array');
 
 	return users.map(user => {
@@ -45,6 +51,7 @@ export function getCities(users) {
 }
 
 export function getSquareRoots(nums) {
+	if (!nums) throw new Error('nums is required');
 	if (!Array.isArray(nums)) throw new Error('nums must be array');
 	
 	return nums.map(num => {
@@ -53,6 +60,8 @@ export function getSquareRoots(nums) {
 }
 
 export function findSentencesContaining(sentences, str) {
+	if (!sentences) throw new Error('sentences is required');
+	if (!str) throw new Error('str is required');
 	if (!Array.isArray(sentences)) throw new Error('sentences must be array');
 	if (typeof(str) !== 'string') throw new Error('str must be string');
 	
@@ -63,6 +72,7 @@ export function findSentencesContaining(sentences, str) {
 }
 
 export function getLongestSides(triangles) {
+	if (!triangles) throw new Error('triangles is required');
 	if (!Array.isArray(triangles)) throw new Error('triangles must be array');
 	
 	return triangles.map(triangle => {

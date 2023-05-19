@@ -173,7 +173,8 @@ describe("checkIngredients", () => {
     type: 'array'
   }, {
     name: 'ingredient',
-    type: 'string'
+    type: 'string',
+    skip: true
   }]);
 });
 
