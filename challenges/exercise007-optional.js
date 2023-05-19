@@ -94,7 +94,7 @@ export const getScreentimeAlertList = (users, date) => {
 	const userTimeMap = users.map(user => {
 		const username = user.username
 
-		const usage = user?.screenTime?.filter(appTime => appTime.date === date)[0].usage;
+		const usage = user?.screenTime?.filter(appTime => appTime.date === date)[0]?.usage;
 
 		if (typeof(usage) !== 'object' || Array.isArray(usage)) return null;
 
