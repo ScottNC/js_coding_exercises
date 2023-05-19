@@ -31,7 +31,14 @@ const typeToArguments = allTypes.reduce((allDifferentTypes, key) => {
 
 // easy to write test
 export const simpleTypeTest = (func, type, argName, testFunc = test) => {
-    testInputType(func, type, argName, typeToArguments[type], true, testFunc);
+
+    const inputTypes = Object.entries(typeValueExamples).reduce((accumulator, [key, value]) => {
+        if (key !== type) 
+            accumulator[accumulator.length] = value;
+        return accumulator;
+    }, []);
+
+    testInputType(func, type, argName, inputTypes, true, testFunc);
 };
 
 export const testMultipleArgs = (func, allArgs, testFunc = test) => {
