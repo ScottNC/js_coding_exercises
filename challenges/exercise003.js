@@ -9,7 +9,6 @@ function concatItems (obj, key, filterFunc) {
 	obj.forEach(item => {
 		items = items.concat(item[key]);
 	})
-	console.log(items);
 
 	// removes item values based on filter (i.e. only accepts string values)
 	return items.filter(filterFunc);
