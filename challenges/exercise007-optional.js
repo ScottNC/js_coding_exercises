@@ -122,6 +122,30 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
 	if (hexStr === undefined) throw new Error('hexStr is required');
+	if (typeof(hexStr) !== 'string' || hexStr.length !== 7 || hexStr[0] !== '#') 
+		throw new Error('hexStr must be string with 7 characters');
+
+	const hexChars = [
+		'0', '1', '2', '3',
+		'4', '5', '6', '7',
+		'8', '9', 'A', 'B',
+		'C', 'D', 'E', 'F'
+	];
+
+	const rgbStr = [1,3,5].reduce((rgb, num) => {
+		const hex = hexStr.slice(num, num + 2).toUpperCase();
+
+		if (!hexChars.includes(hex[0]) || !hexChars.includes(hex[1]))
+			throw new Error('hexStr must only contain hexadecimal characters');
+
+		rgb += parseInt(hex, 16).toString();
+
+		if (num - 5) rgb += ','
+
+		return rgb;
+	}, 'rgb(');
+
+	return rgbStr + ')';
 };
 
 /**
