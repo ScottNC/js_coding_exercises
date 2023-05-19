@@ -219,9 +219,9 @@ describe("hexToRGB", () => {
 describe("findWinner", () => {
 
     const vertWin = [
-        ["X", "0", null],
+        ["X", "0", "0"],
         ["X", null, "0"],
-        ["X", null, "0"]
+        ["X", null, "X"]
     ];
 
     const horizonWin = [
@@ -236,10 +236,28 @@ describe("findWinner", () => {
         ["0", "0", "X"]
     ];
 
+    const diagWinRev = [
+        ["X", "X", "0"],
+        [null, "0", "0"],
+        ["0", "0", "X"]
+    ];
+
     const noWin = [
         ["X", "X", null],
         [null, "X", "0"],
         ["0", "0", null]
+    ];
+
+    const multiWin = [
+        ["X", "X", "X"],
+        ["X", "0", "0"],
+        ["X", "0", "X"]
+    ];
+
+    const bothWin = [
+        ["X", "X", "X"],
+        ["0", "0", "0"],
+        ["X", "0", "X"]
     ];
 
     const wrongSize1 = [
@@ -253,6 +271,36 @@ describe("findWinner", () => {
         ["0", "0"]
     ];
 
+    const twoByTwo = [
+        ["X", "0"],
+        [null, "X"]
+    ];
+
+    const oneByOne = [
+        ["0"]
+    ];
+
+    const fourByFour = [
+        ["X", "X", null, null],
+        ["X", null, "X", "X"],
+        ["0", "0", "0","0"],
+        ["X", null, "X", "X"]
+    ];
+
+    const fourByFourdiag = [
+        ["X", "X", null, null],
+        ["X", "X", "X", "0"],
+        ["0", "0", "X","0"],
+        ["X", null, "X", "X"]
+    ];
+
+    const fourByFourNoWin = [
+        ["X", "X", null, null],
+        ["X", "X", "0", "X"],
+        ["0", "0", null,"0"],
+        ["X", null, "X", "X"]
+    ];
+
     test("wins vertically", () => {
         expect(findWinner(vertWin)).toEqual("X");
     });
@@ -263,15 +311,38 @@ describe("findWinner", () => {
 
     test("wins diagonally", () => {
         expect(findWinner(diagWin)).toEqual("X");
+        expect(findWinner(diagWinRev)).toEqual("0");
     });
 
     test("nobody wins", () => {
         expect(findWinner(noWin)).toBeNull();
     });
 
+    test("same player wins multiple times", () => {
+        expect(findWinner(multiWin)).toEqual("X");
+    });
+
+    test("null if both players win", () => {
+        expect(findWinner(bothWin)).toBeNull();
+    });
+
     test("throw error if matrix is wrong size", () => {
-        expect(() =>  findWinner(wrongSize1)).toThrow('board must 3x3 matrix');
-        expect(() =>  findWinner(wrongSize2)).toThrow('board must 3x3 matrix');
+        expect(() =>  findWinner(wrongSize1)).toThrow('board must be nxn matrix');
+        expect(() =>  findWinner(wrongSize2)).toThrow('board must be nxn matrix');
+    });
+
+    test("1x1 to pass", () => {
+        expect(findWinner(oneByOne)).toEqual("0");
+    });
+
+    test("2x2 to pass", () => {
+        expect(findWinner(twoByTwo)).toEqual("X");
+    });
+
+    test("4x4 to pass", () => {
+        expect(findWinner(fourByFour)).toEqual("0");
+        expect(findWinner(fourByFourdiag)).toEqual("X");
+        expect(findWinner(fourByFourNoWin)).toBeNull();
     });
 
     simpleTypeTest(findWinner, 'array', 'board');
