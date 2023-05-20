@@ -65,11 +65,7 @@ export function reverseAllWords(words) {
 	if (words === undefined) throw new Error('words is required');
 	if (!Array.isArray(words)) throw new Error('words must be array');
 
-	words.forEach((word, index, arr) =>
-		arr[index] = reverseWord(word)
-	);
-
-	return words;
+	return words.map(word => reverseWord(word));
 }
 
 export function countLinuxUsers(users) {

@@ -3,13 +3,7 @@ import {
 } from './exercise001.js';
 
 function concatItems (obj, key, filterFunc) {
-	let items = [];
-
-	// adds all items to array
-	obj.forEach(item => {
-		items = items.concat(item[key]);
-	})
-
+	const items = obj.reduce((allItems, item) => allItems.concat(item[key]), []);
 	// removes item values based on filter (i.e. only accepts string values)
 	return items.filter(filterFunc);
 }

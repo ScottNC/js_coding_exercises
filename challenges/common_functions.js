@@ -13,11 +13,7 @@ export function decimalPlace(num, dec = 2) {
 }
 
 export function findSum(nums) {
-    let sum = 0
-
-	nums.forEach(num => sum += num);
-
-    return sum;
+    return nums.reduce((sum, num) => sum += num, 0);
 }
 
 export function getDecPlaces(num) {
