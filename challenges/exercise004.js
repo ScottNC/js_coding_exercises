@@ -63,6 +63,7 @@ export function getSquareRoots(nums) {
 				return imagStr;
 			}
 		}
+		return num;
 	};
 	
 	return nums.map(squareRoot);

@@ -192,6 +192,11 @@ describe("getSquareRoots", () => {
     expect(getSquareRoots(nums)).toEqual(["i", "2i", "1.41i", "0.5i", "58.35i"]);
   });
 
+  test("gets the square root of each number but ignore non-numbered values", () => {
+    const nums = [36, 77, 12, 'apple', 92, 5];
+    expect(getSquareRoots(nums)).toEqual([6, 8.77, 3.46, 'apple', 9.59, 2.24]);
+  });
+
   simpleTypeTest(getSquareRoots, 'array', 'nums');
 });
 
