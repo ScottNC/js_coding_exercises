@@ -44,16 +44,17 @@ export const sumDigits = (n) => {
  * @param {Number} end
  * @param {Number} step
  */
-export const createRange = (start, end, step = 1) => {
+export const createRange = (start, end, step = 1, endsPastEnd = true) => {
 	if (typeof(start) !== 'number') throw new Error('start must be number');
 	if (typeof(end) !== 'number') throw new Error('end must be number');
 	if (typeof(step) !== 'number') throw new Error('step must be number');
+	if (typeof(endsPastEnd) !== 'boolean') throw new Error('endaPastEnd must be boolean');
 
 	const seqLen = (end - start) / step;
 	if (seqLen < 0) throw new Error('step must be in same direction as start -> end');
-	if (seqLen % 1) throw new Error('start and end difference must be divisible by step');
+	if (seqLen % 1 && !endsPastEnd) throw new Error('start and end difference must be divisible by step');
 
-	const range = Array.from({ length: seqLen + 1 });
+	const range = Array.from({ length: Math.ceil(seqLen + 1) });
 
 	// using a scale factor handles floating point logic better
 	// for example 0.2 + 0.1 = 0.30000000000000004
