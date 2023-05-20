@@ -112,6 +112,10 @@ describe("isItPrime", () => {
         expect(isItPrime(25)).toBe(false);
     });
 
+    test("returns 49 as false", () => {
+        expect(isItPrime(49)).toBe(false);
+    });
+
     test("returns 100 as false", () => {
         expect(isItPrime(100)).toBe(false);
     });
