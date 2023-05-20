@@ -46,7 +46,7 @@ export function getCities(users) {
 	if (!Array.isArray(users)) throw new Error('users must be array');
 
 	return users.map(user => {
-		return user.data && user.data.city && user.data.city.displayName;
+		return user.data?.city?.displayName;
 	});
 }
 
