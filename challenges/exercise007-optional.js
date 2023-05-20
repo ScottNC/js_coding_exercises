@@ -2,6 +2,12 @@ import {
 	getDecPlaces
 } from './common_functions.js';
 
+const HEX_CHARS = [
+	'0', '1', '2', '3',
+	'4', '5', '6', '7',
+	'8', '9', 'A', 'B',
+	'C', 'D', 'E', 'F'
+];
 /**
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
  * @param {Number} n
@@ -17,6 +23,9 @@ export const sumDigits = (n) => {
 	let sum = 0;
 	let divisor = 10;
 
+	// starting from 10 the code will find the remainder of number divided by each power of 10
+	// this will give us the digit
+	// the number is then subtracted by the remainder as each increasing power of 10 will return decimals
 	while (divisor <= 10 ** count) {
 		const remainder = n % divisor;
 		n -= remainder;
@@ -47,11 +56,14 @@ export const createRange = (start, end, step = 1) => {
 	const range = Array.from({ length: seqLen + 1 });
 
 	// using a scale factor handles floating point logic better
+	// for example 0.2 + 0.1 = 0.30000000000000004
 	// so if we have a variable 3.14 we multiply all numbers by 100, add the numbers, divide by 100
-	const decPlaces = [start, end, step].map(getDecPlaces);
+	const decPlaces = [start, step].map(getDecPlaces);
 	const maxDecPlace = Math.max(...decPlaces);
 	const scaleFactor = 10**maxDecPlace;
 
+	// Math.round also better handles floating point logic
+	// for example in javascript 0.27837363726 * 10**11 = 27837363725.999996
 	const newStart = Math.round(start * scaleFactor);
 	const newStep = Math.round(step * scaleFactor);
 
@@ -93,6 +105,11 @@ export const getScreentimeAlertList = (users, date) => {
 	if (!Array.isArray(users)) throw new Error('users must be array');
 	if (typeof(date) !== 'string') throw new Error('date must be string');
 
+	// Each user is mapped to the output: 
+	// {
+	// 	username: 'tony_gunk',
+	// 	time: 123
+	// }
 	const userTimeMap = users.map(user => {
 		const username = user.username
 
@@ -125,17 +142,11 @@ export const hexToRGB = (hexStr) => {
 	if (typeof(hexStr) !== 'string' || hexStr.length !== 7 || hexStr[0] !== '#') 
 		throw new Error('hexStr must be string with 7 characters');
 
-	const hexChars = [
-		'0', '1', '2', '3',
-		'4', '5', '6', '7',
-		'8', '9', 'A', 'B',
-		'C', 'D', 'E', 'F'
-	];
-
+	// 1, 3 and 5 are the indexes for the first characters in the hexStr representing a colour 
 	const rgbStr = [1,3,5].reduce((rgb, num) => {
 		const hex = hexStr.slice(num, num + 2).toUpperCase();
 
-		if (!hexChars.includes(hex[0]) || !hexChars.includes(hex[1]))
+		if (!HEX_CHARS.includes(hex[0]) || !HEX_CHARS.includes(hex[1]))
 			throw new Error('hexStr must only contain hexadecimal characters');
 
 		rgb += parseInt(hex, 16).toString();
@@ -162,36 +173,41 @@ export const findWinner = (board) => {
 	if (board === undefined) throw new Error('board is required');
 	if (!Array.isArray(board)) throw new Error('board must be array');
 
-	const boardLength = board.length;
+	const length = board.length;
 
-	if (!boardLength) throw new Error('board cannot be empty');
+	if (!length) throw new Error('board cannot be empty');
 
 	board.forEach(row => {
-		if (row.length !== boardLength) throw new Error('board must be nxn matrix');
+		if (row.length !== length) throw new Error('board must be nxn matrix');
 	});
 
 	const findWinnerRow = (row) => {
 		['0', 'X'].forEach(symbol => {
 			const symbolPlays = row.filter(char => char === symbol);
-			if (symbolPlays.length === boardLength && !winner.includes(symbol)) winner += symbol;
+			// Will add '0' or 'X' to winner but only if it's not there already
+			// This prevent us outputting 'XX' as null if 'X' wins in two possible ways
+			if (symbolPlays.length === length && !winner.includes(symbol)) winner += symbol;
 		});
 	};
 
 	let winner = '';
 
-	const buildArray = Array.from({ length: boardLength }, (_, idx) => idx);
-	const buildArrayRev = Array.from({ length: boardLength }, (_, idx) => boardLength - idx - 1);
+	const buildArrayAsc = Array.from({ length }, (_, idx) => idx);
+	const buildArrayDesc = Array.from({ length }, (_, idx) => length - idx - 1);
 
-	const verticalRows = buildArray.map(row =>{
-		return buildArray.map(column => board[column][row]);
+	const verticalRows = buildArrayAsc.map(row => {
+		return buildArrayAsc.map(column => board[column][row]);
 	});
 
-	const diagonalRows = [buildArray, buildArrayRev].map(array => {
-		return buildArray.map(column => board[column][array[column]]);
+	const diagonalRows = [buildArrayAsc, buildArrayDesc].map(buildArray => {
+		return buildArrayAsc.map(column => board[column][buildArray[column]]);
 	});
 
+	// To win tic tac toe you need either to cover a row, column or diagonal
+	// the code will check all possible wins to see if someone has won
 	[...board, ...verticalRows, ...diagonalRows].forEach(findWinnerRow);
 
-	// returns null if either nobody wins or they both win
+	// winner can either be null, 'X', '0', '0X' or 'X0'
+	// we only want to return a winner if there is only one winner
 	return winner.length - 1 ? null : winner;
 };
