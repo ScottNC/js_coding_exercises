@@ -143,7 +143,34 @@ describe("getCities", () => {
         },
       },
     ];
+
+    const users2 = [
+      {
+        id: 12,
+        data: {
+          city: {
+            id: 1,
+            displayName: "MCR",
+          },
+        },
+      },
+      {
+        id: 44,
+      },
+      {
+        id: 5,
+        data: {
+          city: {},
+        },
+      },
+      {
+        id: 2,
+        data: {},
+      },
+    ];
     expect(getCities(users)).toEqual(["MCR", "LVP", "LVP", "GLW"]);
+
+    expect(getCities(users2)).toEqual(["MCR"]);
   });
 
   simpleTypeTest(getCities, 'array', 'users');
