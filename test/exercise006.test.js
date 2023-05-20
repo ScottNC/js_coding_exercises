@@ -10,7 +10,7 @@ import {
 import {
     simpleTypeTest,
     testMultipleArgs
-} from "./test_functions.js";
+} from "./parameter_test.js";
 
 describe("sumMultiples", () => {
     test("returns sum of multiples of 3 and 5", () => {

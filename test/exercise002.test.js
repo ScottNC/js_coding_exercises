@@ -8,7 +8,7 @@ import {
 
 import {
 	simpleTypeTest
-  } from "./test_functions.js";
+  } from "./parameter_test.js";
 
 describe('getFillings', () => {
 	test('returns the fillings of a sandwich', () => {

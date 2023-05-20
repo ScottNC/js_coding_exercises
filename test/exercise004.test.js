@@ -12,7 +12,7 @@ import {
 import {
   simpleTypeTest,
   testMultipleArgs
-} from "./test_functions.js";
+} from "./parameter_test.js";
 
 describe("findSmallNums", () => {
   test("returns an array of numbers smaller than 1", () => {

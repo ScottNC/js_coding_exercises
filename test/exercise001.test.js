@@ -14,7 +14,7 @@ import {
 import {
   simpleTypeTest,
   testMultipleArgs
-} from "./test_functions.js";
+} from "./parameter_test.js";
 
 describe("capitalize", () => {
   test("returns a capitalized string", () => {

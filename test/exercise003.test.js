@@ -9,7 +9,7 @@ import {
 import {
   simpleTypeTest,
   testMultipleArgs
-} from "./test_functions.js";
+} from "./parameter_test.js";
 
 describe("camelCaseWords", () => {
   test("camel cases a single word (i.e. no capital letter at beginning)", () => {

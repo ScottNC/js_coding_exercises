@@ -11,7 +11,7 @@ import {
 import {
   simpleTypeTest,
   testMultipleArgs
-} from "./test_functions.js";
+} from "./parameter_test.js";
 
 describe("findNextNumber", () => {
   test("returns the next number after the given number in the array", () => {
