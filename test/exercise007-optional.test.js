@@ -76,7 +76,11 @@ describe("createRange", () => {
     });
 
     test("errors if end can't be included in array", () => {
-        expect(() =>  createRange(3, 10, 2)).toThrow("start and end difference must be divisible by step");
+        expect(() =>  createRange(3, 10, 2, false)).toThrow("start and end difference must be divisible by step");
+    });
+
+    test("errors if end can't be included in array", () => {
+        expect(createRange(3, 10, 2)).toEqual([3, 5, 7, 9, 11]);
     });
 
     test("returns array to include fractions", () => {
