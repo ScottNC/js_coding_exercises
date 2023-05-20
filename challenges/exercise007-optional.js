@@ -181,35 +181,40 @@ export const findWinner = (board) => {
 		if (row.length !== length) throw new Error('board must be nxn matrix');
 	});
 
-	const findWinnerRow = (row) => {
-		symbols.forEach(symbol => {
-			const symbolPlays = row.filter(char => char === symbol);
-			// Will add '0' or 'X' to winner and remove it from 'symbols'
-			// this is to stop the code from checking if a symbol has won twice
-			if (symbolPlays.length === length) {
-				winner += symbol;
-				symbols = symbols.filter(item => item !== symbol);
-			}
-		});
+	const symWin = (isWin, sym, line) => {
+		const symPlays = line.filter(char => char === sym);
+		// Will add '0' or 'X' to winner and remove it from 'symbols'
+		// this is to stop the code from checking if a symbol has won twice
+		if (symPlays.length === length) {
+			symbols = symbols.filter(item => item !== sym);
+			return sym;
+		}
+		return isWin;
+	}
+
+	const findWinnerLine = (lineWin, line) => {
+		lineWin += symbols.reduce((isWin, sym) => symWin(isWin, sym, line), '');
+		return lineWin;
 	};
 
-	let winner = '';
 	let symbols = ['0', 'X'];
 
 	const buildArrayAsc = Array.from({ length }, (_, idx) => idx);
-	const buildArrayDesc = Array.from({ length }, (_, idx) => length - idx - 1);
+	const buildArrayDesc = [...buildArrayAsc].reverse();
 
-	const verticalRows = buildArrayAsc.map(row => {
+	const columns = buildArrayAsc.map(row => {
 		return buildArrayAsc.map(column => board[column][row]);
 	});
 
-	const diagonalRows = [buildArrayAsc, buildArrayDesc].map(buildArray => {
+	const diagonals = [buildArrayAsc, buildArrayDesc].map(buildArray => {
 		return buildArrayAsc.map(column => board[column][buildArray[column]]);
 	});
 
+	const allLines = [...board, ...columns, ...diagonals]
+
 	// To win tic tac toe you need either to cover a row, column or diagonal
 	// the code will check all possible wins to see if someone has won
-	[...board, ...verticalRows, ...diagonalRows].forEach(findWinnerRow);
+	const winner = allLines.reduce(findWinnerLine, '');
 
 	// winner can either be null, 'X', '0', '0X' or 'X0'
 	// we only want to return a winner if there is only one winner
