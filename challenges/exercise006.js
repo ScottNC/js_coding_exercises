@@ -1,9 +1,3 @@
-/* 
-⚠️
-⚠️ See exercise006.md - this time you have to write your own tests! ⚠️
-⚠️
-*/
-
 /**
  * This function will receive an array of numbers and should return the sum
  * of any numbers which are a multiple of 3 or 5
@@ -61,16 +55,21 @@ export const isItPrime = (n) => {
 	if (n === 2 || n === 3) return true;
 	if (n === 1 || !(n % 2) || !(n % 3)) return false;
 
-	let possibleSquareOfPrime = 25;
+	// every prime number greater than 3 follows the rule p = 6n ± 1 where n is an integer
+	// these are numbers that aren't divisible by 2 or 3
+	// these will be called possible primes
+	// we will start at 6n - 1 where n = 1 (so 5)
+	// we will check if n is divisible by the possible prime
+	// then we add 2 or 4 to skip multiples and 3 (so we don't get 6n + 3) 
+	// if there are no primes n is divible by less than the square root of n, n must be prime
+	// we can just iterate through every number however this now checks only 1/3 of numbers reducing runtime by 2/3
+	let possiblePrime = 5;
+	let skip = 2;
 
-	// every prime number, p, greater than 3 obeys the rule p = √(24n + 1) where n is an integer
-	// if it isn't then it cannot be a prime
-	// the code iterates through every possible value of 24n + 1 where n >= 1
-	// if the argument is not divisible by any prime below the square root then it is itself a prime
-	while (possibleSquareOfPrime <= n) {
-		if (!(n % (possibleSquareOfPrime**0.5))) 
-			return false;
-		possibleSquareOfPrime += 24;
+	while (possiblePrime <= n**0.5) {
+		if (!(n % possiblePrime)) return false;
+		possiblePrime += skip;
+		skip ^= 6;  // converts 2 to 4 and 4 to 2 by using XOR function
 	}
 
 	return true;
