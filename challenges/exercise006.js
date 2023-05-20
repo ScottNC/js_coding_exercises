@@ -1,3 +1,7 @@
+import {
+	findSum
+} from './common_functions.js';
+
 /**
  * This function will receive an array of numbers and should return the sum
  * of any numbers which are a multiple of 3 or 5
@@ -6,14 +10,10 @@
  */
 export const sumMultiples = (arr) => {
 	if (arr === undefined) throw new Error('arr is required');
-
 	if (!Array.isArray(arr)) throw new Error('arr must be array');
 
-	return arr.reduce((sum, num) => {
-		if (!(num % 3) || !(num % 5))
-			sum += num;
-		return sum;
-	}, 0);
+	const filteredArray = arr.filter(num => !(num % 3 && num % 5));
+	return findSum(filteredArray);
 };
 
 /**
@@ -25,6 +25,7 @@ export const isValidDNA = (str) => {
 	if (str === undefined) throw new Error('str is required');
 	if (typeof(str) !== 'string') throw new Error('str must be string');
 
+	// uses regular expressions to remove characters C, G, T and A in either case
 	return str === str.replace(/[^cgta]/gi, '');
 };
 
