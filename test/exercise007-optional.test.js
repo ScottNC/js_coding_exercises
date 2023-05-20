@@ -79,6 +79,10 @@ describe("createRange", () => {
         expect(() =>  createRange(3, 10, 2)).toThrow("start and end difference must be divisible by step");
     });
 
+    test("returns array to include fractions", () => {
+        expect(createRange(0, 1, 1/3)).toEqual([0, 1/3, 2/3, 1]);
+    });
+
     testMultipleArgs(createRange, [
         {
             name: 'start',
