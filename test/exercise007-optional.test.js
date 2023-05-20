@@ -79,7 +79,7 @@ describe("createRange", () => {
         expect(() =>  createRange(3, 10, 2, false)).toThrow("start and end difference must be divisible by step");
     });
 
-    test("errors if end can't be included in array", () => {
+    test("passes end if end can't be reached", () => {
         expect(createRange(3, 10, 2)).toEqual([3, 5, 7, 9, 11]);
     });
 
@@ -100,7 +100,12 @@ describe("createRange", () => {
             name: 'step',
             type: 'number',
             skipUndefined: true
-        }
+        },
+        {
+            name: 'endsPastEnd',
+            type: 'boolean',
+            skipUndefined: true
+        },
     ]);
 });
 
