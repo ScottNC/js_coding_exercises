@@ -182,15 +182,19 @@ export const findWinner = (board) => {
 	});
 
 	const findWinnerRow = (row) => {
-		['0', 'X'].forEach(symbol => {
+		symbols.forEach(symbol => {
 			const symbolPlays = row.filter(char => char === symbol);
-			// Will add '0' or 'X' to winner but only if it's not there already
-			// This prevent us outputting 'XX' as null if 'X' wins in two possible ways
-			if (symbolPlays.length === length && !winner.includes(symbol)) winner += symbol;
+			// Will add '0' or 'X' to winner and remove it from 'symbols'
+			// this is to stop the code from checking if a symbol has won twice
+			if (symbolPlays.length === length) {
+				winner += symbol;
+				symbols = symbols.filter(item => item !== symbol);
+			}
 		});
 	};
 
 	let winner = '';
+	let symbols = ['0', 'X'];
 
 	const buildArrayAsc = Array.from({ length }, (_, idx) => idx);
 	const buildArrayDesc = Array.from({ length }, (_, idx) => length - idx - 1);
