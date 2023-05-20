@@ -34,9 +34,8 @@ export function addVAT(originalPrice, vatRate) {
 }
 
 export function getSalePrice(originalPrice, reduction) {
-	if (originalPrice === undefined) throw new Error('originalPrice is required');
+	// addVAT will check if originalPrice is inputted incorrectly
 	if (reduction === undefined) throw new Error('reduction is required');
-	if (typeof(originalPrice) !== 'number') throw new Error('originalPrice must be number');
 	if (typeof(reduction) !== 'number') throw new Error('reduction must be number');
 	
 	return addVAT(originalPrice, -reduction);
@@ -77,9 +76,7 @@ export function countLinuxUsers(users) {
 	if (users === undefined) throw new Error('users is required');
 	if (!Array.isArray(users)) throw new Error('users must be array');
 
-	const linuxUsers = users.filter(user => {
-		return user.type === 'Linux'
-	});
+	const linuxUsers = users.filter(user => user.type === 'Linux');
 
 	return linuxUsers.length;
 }
