@@ -182,6 +182,16 @@ describe("getSquareRoots", () => {
     expect(getSquareRoots(nums)).toEqual([6, 8.77, 3.46, 18.84, 9.59, 2.24]);
   });
 
+  test("gets the square root of each number to 2 decimal places for floats", () => {
+    const nums = [0.25, 3404.7225];
+    expect(getSquareRoots(nums)).toEqual([0.5, 58.35]);
+  });
+
+  test("gets the square root of negative numbers", () => {
+    const nums = [-1, -4, -2];
+    expect(getSquareRoots(nums)).toEqual(["i", "2i", "1.41i"]);
+  });
+
   simpleTypeTest(getSquareRoots, 'array', 'nums');
 });
 
