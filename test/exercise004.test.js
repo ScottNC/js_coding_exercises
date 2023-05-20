@@ -188,8 +188,8 @@ describe("getSquareRoots", () => {
   });
 
   test("gets the square root of negative numbers", () => {
-    const nums = [-1, -4, -2];
-    expect(getSquareRoots(nums)).toEqual(["i", "2i", "1.41i"]);
+    const nums = [-1, -4, -2, -0.25, -3404.7225];
+    expect(getSquareRoots(nums)).toEqual(["i", "2i", "1.41i", "0.5i", "58.35i"]);
   });
 
   simpleTypeTest(getSquareRoots, 'array', 'nums');

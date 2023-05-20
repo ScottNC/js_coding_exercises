@@ -53,10 +53,19 @@ export function getCities(users) {
 export function getSquareRoots(nums) {
 	if (!nums) throw new Error('nums is required');
 	if (!Array.isArray(nums)) throw new Error('nums must be array');
+
+	const squareRoot = num => {
+		if (typeof(num) === 'number') {
+			if (num >= 0) return decimalPlace(num**0.5);
+			else {
+				const imaginary = decimalPlace((-num)**0.5);
+				const imagStr = (imaginary - 1? imaginary : '') + 'i';
+				return imagStr;
+			}
+		}
+	};
 	
-	return nums.map(num => {
-		return typeof(num) === 'number' && decimalPlace(num**0.5);
-	});
+	return nums.map(squareRoot);
 }
 
 export function findSentencesContaining(sentences, str) {
