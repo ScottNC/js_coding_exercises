@@ -45,9 +45,7 @@ export function getCities(users) {
 	if (!users) throw new Error('users is required');
 	if (!Array.isArray(users)) throw new Error('users must be array');
 
-	return users.map(user => {
-		return user.data?.city?.displayName;
-	});
+	return users.map(user => user.data?.city?.displayName);
 }
 
 export function getSquareRoots(nums) {
@@ -85,7 +83,5 @@ export function getLongestSides(triangles) {
 	if (!triangles) throw new Error('triangles is required');
 	if (!Array.isArray(triangles)) throw new Error('triangles must be array');
 	
-	return triangles.map(triangle => {
-		return Math.max(...triangle);
-	});
+	return triangles.map(triangle => Math.max(...triangle));
 }

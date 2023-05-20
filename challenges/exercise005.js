@@ -80,6 +80,7 @@ export const getWordFrequencies = (str) => {
 	if (str === undefined) throw new Error('str is required');
 	if (typeof(str) !== 'string') throw new Error('str must be string');
 
+	// Uses Regular Expressions to remove special characters
 	const arrayOfWords = str.replace(/[^\w\s]/gi, "").toLowerCase().split(' ');
 
 	const wordFrequencies = arrayOfWords.reduce((frequencies, word) => {
