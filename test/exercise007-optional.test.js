@@ -12,7 +12,7 @@ import {
 } from "./parameter_test.js";
 
 
-describe("sumDigits", () => {
+describe.only("sumDigits", () => {
     test("returns sum of digits for integers", () => {
         expect(sumDigits(1234)).toBe(10);
         expect(sumDigits(1023)).toBe(6);

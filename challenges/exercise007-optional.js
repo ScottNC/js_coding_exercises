@@ -19,19 +19,17 @@ export const sumDigits = (n) => {
 	const numAsString = n.toString().replace('.','');
 	n = parseInt(numAsString);
 
-	const count = numAsString.length;
-	let sum = 0;
-	let divisor = 10;
+	const length = numAsString.length;
+	const powersOfTen = Array.from({ length }, (_, idx) => 10 ** (idx + 1));
 
 	// starting from 10 the code will find the remainder of number divided by each power of 10
 	// this will give us the digit
 	// the number is then subtracted by the remainder as each increasing power of 10 will return decimals
-	while (divisor <= 10 ** count) {
-		const remainder = n % divisor;
+	const sum = powersOfTen.reduce((currentSum, tenthPower) => {
+		const remainder = n % tenthPower;
 		n -= remainder;
-		sum += 10 * remainder / divisor;
-		divisor *= 10;
-	}
+		return currentSum + 10 * remainder / tenthPower;
+	}, 0);
 	
 	return sum;
 };
