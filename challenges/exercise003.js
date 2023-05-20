@@ -2,7 +2,7 @@ import {
 	capitalize,
 } from './exercise001.js';
 
-function concatItems (obj, key, filterFunc) {
+function concatItemsFromKey (obj, key, filterFunc) {
 	const items = obj.reduce((allItems, item) => allItems.concat(item[key]), []);
 	// removes item values based on filter (i.e. only accepts string values)
 	return items.filter(filterFunc);
@@ -33,7 +33,7 @@ export function getTotalSubjects(people) {
 	if (people === undefined) throw new Error('people is required');
 	if (!Array.isArray(people)) throw new Error('people must be array');
 	
-	const subjects = concatItems(people, 'subjects', item => typeof(item) === 'string')
+	const subjects = concatItemsFromKey(people, 'subjects', item => typeof(item) === 'string')
 	return subjects.length;
 }
 
@@ -44,7 +44,7 @@ export function checkIngredients(menu, ingredient) {
 	if (typeof(ingredient) !== 'string') throw new Error('ingredient must be string');
 
 	// Creates array of all times ingredient is used
-	const relevantIngredients = concatItems(menu, 'ingredients', item => item === ingredient);
+	const relevantIngredients = concatItemsFromKey(menu, 'ingredients', item => item === ingredient);
 	// returns true if ingredient is used at all
 	return !!relevantIngredients.length;
 }
