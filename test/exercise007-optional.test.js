@@ -12,7 +12,7 @@ import {
 } from "./parameter_test.js";
 
 
-describe.only("sumDigits", () => {
+describe("sumDigits", () => {
     test("returns sum of digits for integers", () => {
         expect(sumDigits(1234)).toBe(10);
         expect(sumDigits(1023)).toBe(6);
@@ -24,7 +24,37 @@ describe.only("sumDigits", () => {
         expect(sumDigits(12.34)).toBe(10);
     });
 
-    simpleTypeTest(sumDigits, 'number', 'n');
+    test("returns sum of digits for hexadecimal numbers", () => {
+        expect(sumDigits(1234, 16)).toBe(19); // 1234 in hexadecimal is 4D2, 4 + 13 + 2 = 19
+    });
+
+    test("returns sum of digits for binary numbers", () => {
+        expect(sumDigits(8165, 2)).toBe(10); // 8165 in binary is 1111111100101, so sum is 10
+    });
+
+    test("returns sum of digits for non-integer hexadecimal numbers", () => {
+        expect(sumDigits(13.5, 16)).toBe(21); // 13.5 in hexadecimal is D.8, 13 + 8 = 21
+    });
+
+    test("returns sum of digits for non-integer binary numbers", () => {
+        expect(sumDigits(2.625, 2)).toBe(3); // 2.625 in binary is 10.101, so sum is 3
+    });
+
+    test("returns sum of digits for fractions", () => {
+        expect(sumDigits(1/3, 3)).toBe(1); // 1/3 in ternary is 0.1, so sum is 1
+    });
+
+    testMultipleArgs(sumDigits, [
+        {
+            name : 'n',
+            type: 'number'
+        },
+        {
+            name: 'base',
+            type: 'number',
+            skipUndefined: true
+        }
+    ])
 });
 
 describe("createRange", () => {
