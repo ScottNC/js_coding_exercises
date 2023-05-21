@@ -95,6 +95,10 @@ describe("isItPrime", () => {
     test("returns large prime numbers as true", () => {
         expect(isItPrime(271)).toBe(true);
     });
+    
+    test("returns very large prime numbers as true", () => {
+        expect(isItPrime(1000003)).toBe(true);
+    });
 
     test("returns 1 as false", () => {
         expect(isItPrime(1)).toBe(false);
@@ -136,6 +140,11 @@ describe("isItPrime", () => {
         expect(isItPrime(292681)).toBe(false);
     });
 
+    test("errors if n isn't positive integer", () => {
+        expect(() =>  isItPrime(-1)).toThrow("n must be positive integer");
+        expect(() =>  isItPrime(4.5)).toThrow("n must be positive integer");
+    });
+
     simpleTypeTest(isItPrime, 'number', 'n');
 });
 
@@ -171,7 +180,6 @@ describe("createMatrix", () => {
         ]);
     });
 
-    // testInputType(createMatrix, 'number', 'n', [['hello there','foo'], [[1,2,3], 'foo'], [false, 'foo']], false);
     testMultipleArgs(createMatrix, [
         {
             type: 'number',
@@ -253,8 +261,6 @@ describe("areWeCovered", () => {
         expect(areWeCovered(staff3, "Wednesday")).toEqual(false);
     });
 
-    // testInputType(areWeCovered, 'array', 'staff', [['hello there','Thursday'], [56, 'Thursday'], [false, 'Thursday']], false);
-    // testInputType(areWeCovered, 'string', 'day', [[staff1,staff1], [staff1, 729], [staff1, true]], false, 1);
     testMultipleArgs(areWeCovered, [
         {
             type: 'array',
