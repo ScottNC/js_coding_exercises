@@ -12,23 +12,23 @@ const HEX_CHARS = [
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
  * @param {Number} n
  */
-export const sumDigits = (n) => {
+export const sumDigits = (n, base = 10) => {
 	if (typeof(n) !== 'number') throw new Error('n must be number');
+	if (typeof(base) !== 'number') throw new Error('base must be number');
 
 	// changes value of n if decimal (i.e 3.14 will be 314 as sum of digits will be the same)
-	const numAsString = n.toString().replace('.','');
-	n = parseInt(numAsString);
-
+	const numAsString = n.toString(base).replace('.','');
 	const length = numAsString.length;
-	const powersOfTen = Array.from({ length }, (_, idx) => 10 ** (idx + 1));
+	n = parseInt(numAsString, base);
+	const powersOfBase = Array.from({ length }, (_, idx) => base ** (idx + 1));
 
-	// starting from 10 the code will find the remainder of number divided by each power of 10
+	// starting from the base the code will find the remainder of number divided by each power of the base
 	// this will give us the digit
-	// the number is then subtracted by the remainder as each increasing power of 10 will return decimals
-	const sum = powersOfTen.reduce((currentSum, tenthPower) => {
-		const remainder = n % tenthPower;
+	// the number is then subtracted by the remainder as each increasing power of base will return decimals
+	const sum = powersOfBase.reduce((currentSum, basePower) => {
+		const remainder = n % basePower;
 		n -= remainder;
-		return currentSum + 10 * remainder / tenthPower;
+		return currentSum + base * remainder / basePower;
 	}, 0);
 	
 	return sum;
